@@ -1,4 +1,5 @@
 ﻿using System;
+using Bolsover.Involute.Model;
 
 namespace Bolsover.Bevel.Models
 {
@@ -39,7 +40,7 @@ namespace Bolsover.Bevel.Models
         double CircularThicknessDegrees { get; set; }
         double InterToothDegrees { get; set; }
 
-        BevelGearType GearType { get; set; }
+        GearStyle GearType { get; set; }
 
         event EventHandler Updated;
     }

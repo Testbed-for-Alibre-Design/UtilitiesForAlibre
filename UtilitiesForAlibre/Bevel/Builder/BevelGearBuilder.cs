@@ -25,7 +25,7 @@ namespace Bolsover.Bevel.Builder
             var filePath = Globals.InstallPath;
             if (filePath != null)
             {
-                filePath += "\\Bevel\\Images\\" + template;
+                filePath += "\\Gear\\" + template;
             }
 
             if (filePath != null) File.Copy(filePath, tempFile, true);
@@ -78,7 +78,7 @@ namespace Bolsover.Bevel.Builder
                 var lhsInvolute = GearPoint.MirrorPoints(rhsInvolute, 90);
                 rhsInvolute = GearPoint.Rotated(rhsInvolute, Radians(90));
                 lhsInvolute = GearPoint.Rotated(lhsInvolute, Radians(90));
-                if (bevelGear.GearType == BevelGearType.Standard)
+                if (bevelGear.GearType == GearStyle.BevelStandard)
                 {
                     rhsInvolute = GearPoint.Rotated(rhsInvolute, Radians(quarterTooth - phi));
                     lhsInvolute = GearPoint.Rotated(lhsInvolute, -Radians(quarterTooth - phi));
@@ -114,7 +114,7 @@ namespace Bolsover.Bevel.Builder
                 var lhsInvolute = GearPoint.MirrorPoints(rhsInvolute, 90);
                 rhsInvolute = GearPoint.Rotated(rhsInvolute, Radians(90));
                 lhsInvolute = GearPoint.Rotated(lhsInvolute, Radians(90));
-                if (bevelGear.GearType == BevelGearType.Standard)
+                if (bevelGear.GearType == GearStyle.BevelStandard)
                 {
                     rhsInvolute = GearPoint.Rotated(rhsInvolute, Radians(quarterTooth - phi));
                     lhsInvolute = GearPoint.Rotated(lhsInvolute, -Radians(quarterTooth - phi));

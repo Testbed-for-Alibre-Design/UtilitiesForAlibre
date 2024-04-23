@@ -1,5 +1,6 @@
 ﻿using System;
 using Bolsover.Bevel.Models;
+using Bolsover.Involute.Model;
 using static Bolsover.Utils.ConversionUtils;
 
 namespace Bolsover.Bevel.Calculator
@@ -14,7 +15,7 @@ namespace Bolsover.Bevel.Calculator
         /// <returns></returns>
         public static (double, double) CalculateCircularThickness(IBevelGear pinion, IBevelGear gear)
         {
-            if (pinion.GearType == BevelGearType.Standard)
+            if (pinion.GearType == GearStyle.BevelStandard)
                 return (0, 0);
             switch (pinion.NumberOfTeeth)
             {
@@ -64,7 +65,7 @@ namespace Bolsover.Bevel.Calculator
 
         public static (double, double) CalculateKFactor(IBevelGear pinion, IBevelGear gear)
         {
-            if (pinion.GearType == BevelGearType.Standard || pinion.NumberOfTeeth < 13 || pinion.NumberOfTeeth > 24)
+            if (pinion.GearType == GearStyle.BevelStandard || pinion.NumberOfTeeth < 13 || pinion.NumberOfTeeth > 24)
                 return (0, 0);
             var ratio = pinion.NumberOfTeeth / gear.NumberOfTeeth;
             var k = KFactorDictionary.GetKFactor((int)pinion.NumberOfTeeth, ratio);
@@ -150,8 +151,8 @@ namespace Bolsover.Bevel.Calculator
         {
             return gear.GearType switch
             {
-                BevelGearType.Standard => CalculateStandardAddendum(pinion, gear),
-                BevelGearType.Gleason => CalculateGleasonAddendum(pinion, gear),
+                GearStyle.BevelStandard => CalculateStandardAddendum(pinion, gear),
+                GearStyle.BevelGleason => CalculateGleasonAddendum(pinion, gear),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
@@ -160,8 +161,8 @@ namespace Bolsover.Bevel.Calculator
         {
             return gear.GearType switch
             {
-                BevelGearType.Standard => CalculateStandardDedendum(pinion, gear),
-                BevelGearType.Gleason => CalculateGleasonDedendum(pinion, gear),
+                GearStyle.BevelStandard => CalculateStandardDedendum(pinion, gear),
+                GearStyle.BevelGleason => CalculateGleasonDedendum(pinion, gear),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
@@ -214,8 +215,8 @@ namespace Bolsover.Bevel.Calculator
         {
             return gear.GearType switch
             {
-                BevelGearType.Standard => CalculateStandardAddendumAngle(pinion, gear),
-                BevelGearType.Gleason => CalculateGleasonAddendumAngle(pinion, gear),
+                GearStyle.BevelStandard => CalculateStandardAddendumAngle(pinion, gear),
+                GearStyle.BevelGleason => CalculateGleasonAddendumAngle(pinion, gear),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }

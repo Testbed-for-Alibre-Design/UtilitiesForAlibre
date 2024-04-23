@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Bolsover.Involute.Model;
 
 namespace Bolsover.Bevel.Models
 {
@@ -32,7 +33,7 @@ namespace Bolsover.Bevel.Models
         private double _outerConeAngle;
         private string _hand;
         private string _stringValue;
-        private BevelGearType _gearType;
+        private GearStyle _gearType;
         private double _equivalentPitchDiameter;
         private double _equivalentBaseDiameter;
         private double _equivalentRootDiameter;
@@ -185,7 +186,7 @@ namespace Bolsover.Bevel.Models
             }
         }
 
-        public BevelGearType GearType
+        public GearStyle GearType
         {
             get => _gearType;
             set

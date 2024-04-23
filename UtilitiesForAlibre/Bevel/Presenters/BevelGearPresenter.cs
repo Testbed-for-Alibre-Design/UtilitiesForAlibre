@@ -6,6 +6,7 @@ using AlibreX;
 using Bolsover.Bevel.Builder;
 using Bolsover.Bevel.Models;
 using Bolsover.Bevel.Views;
+using Bolsover.Involute.Model;
 using static Bolsover.Bevel.Calculator.BevelGearCalculator;
 using static Bolsover.Utils.LatexUtils;
 
@@ -58,7 +59,7 @@ namespace Bolsover.Bevel.Presenters
                 FaceWidth = 22.0d,
                 NumberOfTeeth = 20.0d,
                 Hand = "L",
-                GearType = BevelGearType.Standard
+                GearType =  GearStyle.BevelStandard
             };
             _gear = new BevelGear
             {
@@ -69,7 +70,7 @@ namespace Bolsover.Bevel.Presenters
                 FaceWidth = 22.0d,
                 NumberOfTeeth = 40.0d,
                 Hand = "R",
-                GearType = BevelGearType.Standard
+                GearType =  GearStyle.BevelStandard
             };
         }
 
@@ -146,28 +147,28 @@ namespace Bolsover.Bevel.Presenters
             _pinion.GearType = RadioButtonToGearType((RadioButton)sender);
         }
 
-        private void UpdateNotesLabel(BevelGearType gearType)
+        private void UpdateNotesLabel(GearStyle gearType)
         {
             var view = (BevelGearView)_view;
             view.NotesLabel.Text = gearType switch
             {
-                BevelGearType.Standard => "For Standard gears, the addendum (ha) is 1.000m and the dedendum (hf) 1.25m",
-                BevelGearType.Gleason =>
+                GearStyle.BevelStandard => "For Standard gears, the addendum (ha) is 1.000m and the dedendum (hf) 1.25m",
+                GearStyle.BevelGleason =>
                     "For Gleason gears, the addendum (ha) and dedendum (hf) are calculated using the formulae shown above.",
                 _ => ""
             };
         }
 
-        private static BevelGearType RadioButtonToGearType(RadioButton sender)
+        private static GearStyle RadioButtonToGearType(RadioButton sender)
         {
             switch (sender.Name)
             {
                 case "standardRadioButton":
-                    return BevelGearType.Standard;
+                    return GearStyle.BevelStandard;
                 case "gleasonRadioButton":
-                    return BevelGearType.Gleason;
+                    return GearStyle.BevelGleason;
                 default:
-                    return BevelGearType.Standard;
+                    return GearStyle.BevelStandard;
             }
         }
 
@@ -175,7 +176,7 @@ namespace Bolsover.Bevel.Presenters
         {
             var value = (double)((NumericUpDown)sender).Value;
             // ensure minimum number of teeth for Gleason gears is 13
-            if (_pinion.GearType == BevelGearType.Gleason && value < 13)
+            if (_pinion.GearType == GearStyle.BevelGleason && value < 13)
             {
                 value = 13;
                 ((BevelGearView)_view).NumberOfTeethPinionNumericUpDown.Value = 13;
@@ -272,7 +273,7 @@ namespace Bolsover.Bevel.Presenters
                 (_gear.EquivalentRootDiameter / 25.4).ToString("0.000 in"), ""));
             data.Add(new BevelGearData("Back Cone Angle", _pinion.BackConeAngle.ToString("0.000°"), "", "", _gear.BackConeAngle.ToString("0.000°"),
                 "", ""));
-            if (_pinion.GearType == BevelGearType.Gleason)
+            if (_pinion.GearType == GearStyle.BevelGleason)
             {
                 data.Add(new BevelGearData("KFactor", _pinion.KFactor.ToString("0.000"), "", "", _gear.KFactor.ToString("0.000"),
                     "", ""));

@@ -77,6 +77,7 @@
     </Reference>
     <Reference Include="alibre-server">
       <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\alibre-server.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="AlibreAddOn">
       <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\AlibreAddOn.dll</HintPath>
@@ -229,6 +230,7 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UtilitiesForAlibre">
       <HintPath>bin\Debug\UtilitiesForAlibre.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="WpfMath, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WpfMath.1.1.0\lib\net462\WpfMath.dll</HintPath>
@@ -259,7 +261,6 @@
     <Compile Include="Bevel\Calculator\KFactorDictionary.cs" />
     <Compile Include="Bevel\Models\BevelGear.cs" />
     <Compile Include="Bevel\Models\BevelGearData.cs" />
-    <Compile Include="Bevel\Models\BevelGearType.cs" />
     <Compile Include="Bevel\Models\IBevelGear.cs" />
     <Compile Include="Bevel\Models\BevelLatexStrings.cs" />
     <Compile Include="Bevel\Presenters\BevelGearPresenter.cs" />
@@ -446,9 +447,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Bevel\Images\BevelGearTemplate.AD_PRT">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Bevel\Images\BevelMeshing.png" />
     <Content Include="Bevel\Images\DimensionsAndAngles.png" />
     <Content Include="Bevel\Images\Symbols.png">
@@ -457,6 +455,10 @@
     <Content Include="Copyright and License.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Gear\BevelGearTemplate.AD_PRT">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Gear\BevelGearTemplate2.AD_PRT" />
     <Content Include="Gear\HelicalPinionTemplate.AD_PRT">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
