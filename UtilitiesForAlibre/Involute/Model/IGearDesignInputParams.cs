@@ -15,6 +15,8 @@ namespace Bolsover.Involute.Model
         double CircularBacklash { get; set; } // circular backlash required j_t
 
         double CoefficientOfProfileShift { get; set; }
+        
+        double WormPitchDiameter { get; set; } // pitch diameter of worm
 
         double HeightOfPitchLine { get; set; } // height of pitch line of rack gear
 

@@ -6,10 +6,12 @@ using Bolsover.AlibreDataViewer;
 using Bolsover.Bevel.Views;
 using Bolsover.CycloidalGear;
 using Bolsover.DataBrowser;
+using Bolsover.FaceArea;
 using Bolsover.Involute.View;
 using Bolsover.PlaneFinder;
 using Bolsover.RackPinion.View;
 using Bolsover.Shortcuts.View;
+using Bolsover.WormGear.View;
 using Shortcuts.Shortcuts.View;
 
 namespace Bolsover
@@ -26,10 +28,13 @@ namespace Bolsover
         private const int SubmenuIdGearBevel = 606;
         private const int SubmenuIdUtilsPlaneFinder = 603;
         private const int SubmenuIdUtilsDataViewer = 604;
+        
         private const int SubmenuIdGearRackSpur = 607;
+        private const int SubmenuIdGearWormGear = 608;
         private const int SubmenuIdGearInvolute = 609;
         private const int SubmenuIdShortcutsReport = 610;
         private const int SubmenuIdShortcutsKeyboard = 611;
+        private const int SubmenuIdUtilsFaceArea = 612;
         private const int MenuIdHelp = 701;
         private const int SubmenuIdHelpAbout = 702;
         private int[] _menuIdsUtils;
@@ -75,6 +80,7 @@ namespace Bolsover
                 SubmenuIdDataBrowser,
                 SubmenuIdUtilsPlaneFinder,
                 SubmenuIdUtilsDataViewer
+             //   SubmenuIdUtilsFaceArea
             };
             _menuIdsRoot = new[]
             {
@@ -92,7 +98,8 @@ namespace Bolsover
                 SubmenuIdGearCycloidal,
                 SubmenuIdGearInvolute,
                 SubmenuIdGearBevel,
-                SubmenuIdGearRackSpur
+                SubmenuIdGearRackSpur,
+                SubmenuIdGearWormGear
             };
         }
 
@@ -156,6 +163,8 @@ namespace Bolsover
                 SubmenuIdShortcutsReport => "Shortcuts Report",
                 SubmenuIdShortcutsKeyboard => "Keyboard layout",
                 SubmenuIdGearRackSpur => "Rack and Pinion",
+                SubmenuIdGearWormGear => "Worm & Worm Gear",
+                SubmenuIdUtilsFaceArea => "Face Area",
                 _ => ""
             };
         }
@@ -203,6 +212,8 @@ namespace Bolsover
                         case SubmenuIdShortcutsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubMenuIdShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdGearRackSpur: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdGearWormGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case  SubmenuIdUtilsFaceArea: return ADDONMenuStates.ADDON_MENU_GRAYED;
                     }
 
                     break;
@@ -224,6 +235,8 @@ namespace Bolsover
                         case SubmenuIdShortcutsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubMenuIdShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdGearRackSpur: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case SubmenuIdGearWormGear: return ADDONMenuStates.ADDON_MENU_GRAYED;
+                        case  SubmenuIdUtilsFaceArea: return ADDONMenuStates.ADDON_MENU_GRAYED;
                     }
 
                     break;
@@ -244,6 +257,8 @@ namespace Bolsover
                         case SubmenuIdShortcutsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubMenuIdShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubmenuIdGearRackSpur: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case SubmenuIdGearWormGear: return ADDONMenuStates.ADDON_MENU_ENABLED;
+                        case  SubmenuIdUtilsFaceArea: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
 
                     break;
@@ -275,6 +290,8 @@ namespace Bolsover
                 SubmenuIdShortcutsKeyboard => "Shortcuts Keyboard",
                 SubMenuIdShortcuts => "Shortcuts",
                 SubmenuIdGearRackSpur => "Rack & Pinion",
+                SubmenuIdGearWormGear => "Worm & Worm Gear",
+                SubmenuIdUtilsFaceArea => "Face Area",
                 _ => ""
             };
         }
@@ -334,6 +351,8 @@ namespace Bolsover
                 SubmenuIdShortcutsReport => DoShortcuts(),
                 SubmenuIdShortcutsKeyboard => DoKeyboard(),
                 SubmenuIdGearRackSpur => DoRackSpur(),
+                SubmenuIdGearWormGear => DoWormGear(),
+                SubmenuIdUtilsFaceArea => DoFaceArea(session),
                 _ => null
             };
         }
@@ -477,6 +496,51 @@ namespace Bolsover
         }
 
         #endregion
+        
+        #region FaceArea
+        
+        /// <summary>
+        /// A dictionary to keep track of currently open PlaneFinderAddOnCommand object.
+        /// </summary>
+        private readonly Dictionary<string, FaceAreaAddOnCommand> _FaceAreaAddOnCommands = new();
+        
+        private IAlibreAddOnCommand DoFaceArea(IADSession session)
+        {
+            FaceAreaAddOnCommand faceAreaAddOnCommand;
+            if (_FaceAreaAddOnCommands.ContainsKey(session.Identifier))
+            {
+                if (!_FaceAreaAddOnCommands.TryGetValue(session.Identifier, out faceAreaAddOnCommand))
+                    return null;
+                faceAreaAddOnCommand.UserRequestedClose();
+                _FaceAreaAddOnCommands.Remove(session.Identifier);
+                return null;
+            }
+            else
+            {
+                faceAreaAddOnCommand = new FaceAreaAddOnCommand(session)
+                {
+                    FaceArea =
+                    {
+                        Visible = true
+                    }
+                };
+                faceAreaAddOnCommand.Terminate += FaceAreaAddOnCommandOnTerminate;
+                _FaceAreaAddOnCommands.Add(session.Identifier, faceAreaAddOnCommand);
+            }
+            
+            return faceAreaAddOnCommand;
+        }
+        
+        private void FaceAreaAddOnCommandOnTerminate(object sender, FaceAreaAddOnCommandTerminateEventArgs e)
+        {
+            if (_FaceAreaAddOnCommands.TryGetValue(e.FaceAreaAddOnCommand.Session.Identifier,
+                    out _))
+            {
+                _FaceAreaAddOnCommands.Remove(e.FaceAreaAddOnCommand.Session.Identifier);
+            }
+        }
+        
+        #endregion
 
         #region CycloidalGear
 
@@ -591,6 +655,17 @@ namespace Bolsover
         }
 
      
+
+        #endregion
+
+        #region WormGear
+
+        private  IAlibreAddOnCommand DoWormGear()
+        {
+            var form = new WormGearForm();
+            form.Show();
+            return null;
+        }
 
         #endregion
 

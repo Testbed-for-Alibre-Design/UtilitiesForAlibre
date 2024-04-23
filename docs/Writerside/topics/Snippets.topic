@@ -50,6 +50,52 @@
         </code-block>
     </snippet>
 
+    <snippet id="P">
+        <code-block lang="tex">
+            \begin{equation} P \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="P_x">
+        <code-block lang="tex">
+            \begin{equation} P_{x} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="m2P">
+        <code-block lang="tex">
+            \begin{equation} \pi m \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="worm_pitch_dia_rule1">
+    <code-block lang="tex">  \begin{equation} 2.4 P_{x} + 1.1 \end{equation} </code-block>
+    </snippet>
+
+    <snippet id="worm_pitch_dia_rule2">
+        <code-block lang="tex">  \begin{equation} 2a_{x} - d_{2} \end{equation} </code-block>
+    </snippet>
+
+    <snippet id="worm_pitch_dia_rule3">
+        <code-block lang="tex">  \begin{equation} L \frac{cot\gamma}{\pi} \end{equation} </code-block>
+    </snippet>
+
+    <snippet id="worm_pitch_dia_rule4">
+        <code-block lang="tex">  \begin{equation} \frac{2a_{x}}{ 1+ \left(\frac{z_{2}}{z_{1}} tan\gamma \right) } \end{equation} </code-block>
+    </snippet>
+
+    <snippet id="worm_pitch_diameter">
+        <code-block lang="tex">
+            \begin{equation} Q m_{x} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="worm_gear_pitch_diameter">
+        <code-block lang="tex">
+            \begin{equation} z_{2} m_{x} \end{equation}
+        </code-block>
+    </snippet>
+
     <snippet id="epsilon_alpha">
         <code-block lang="tex">
             \begin{equation} \epsilon_{\alpha} \end{equation}
@@ -251,6 +297,34 @@
             \begin{equation} h_{a1} \end{equation}
         </code-block>
     </snippet>
+    <snippet id="worm_h_a1">
+        <code-block lang="tex">
+            \begin{equation} 1.00m_{x} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="worm_h_f1">
+        <code-block lang="tex">
+            \begin{equation} 1.25m_{x} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="worm_h_a2">
+        <code-block lang="tex">
+            \begin{equation} 1.00m_{x} \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="worm_h_f2">
+        <code-block lang="tex">
+            \begin{equation} 1.25m_{x} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="worm_h">
+        <code-block lang="tex">
+            \begin{equation} 2.25m_{x} \end{equation}
+        </code-block>
+    </snippet>
 
     <snippet id="h_a2">
         <code-block lang="tex">
@@ -264,11 +338,87 @@
         </code-block>
     </snippet>
 
+    <snippet id="worm_d_a1">
+        <code-block lang="tex">
+            \begin{equation} d_{1} + 2h_{a1} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="worm_lead_angle">
+        <code-block lang="tex">
+            \begin{equation} tan^{-1}\left(\frac{m_{x}z_{w}}{d_{1}}\right) \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="worm_lead">
+        <code-block lang="tex">
+            \begin{equation} z_{1}P_{x}  \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="worm_centre_distance">
+        <code-block lang="tex">
+            \begin{equation} \frac{d_{1}+d_{2}}{2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="worm_d_a2">
+        <code-block lang="tex">
+            \begin{equation} d_{2} + 2h_{a2} + m_{x} \end{equation}
+        </code-block>
+    </snippet>
+
     <snippet id="d_a2">
         <code-block lang="tex">
             \begin{equation} d_{a2} \end{equation}
         </code-block>
     </snippet>
+
+    <snippet id="d_th">
+        <code-block lang="tex">
+            \begin{equation} d_{th} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="worm_gear_d_th">
+        <code-block lang="tex">
+            \begin{equation} d_{2}+2h_{a2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="r_i">
+        <code-block lang="tex">
+            \begin{equation} r_{i} \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="worm_gear_r_i">
+        <code-block lang="tex">
+            \begin{equation} \frac{d_{1}}{2} -h_{a1} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="b_1">
+        <code-block lang="tex">
+            \begin{equation} b_{1} \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="b_e">
+        <code-block lang="tex">
+            \begin{equation} b_{e} \end{equation}
+        </code-block>
+    </snippet>
+    <snippet id="worm_gear_b_e">
+        <code-block lang="tex">
+            \begin{equation} 2m_{x} \sqrt{\left(\frac{d_{1}}{m_{x}}+1\right)} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="worm_b_1">
+        <code-block lang="tex">
+            \begin{equation} \pi m_{x} \left(4.5 + 0.02z_{2}\right) \end{equation}
+        </code-block>
+    </snippet>
+
 
     <snippet id="d_f1">
         <code-block lang="tex">
@@ -276,9 +426,21 @@
         </code-block>
     </snippet>
 
+    <snippet id="worm_d_f1">
+        <code-block lang="tex">
+            \begin{equation} d_{a1}-2h \end{equation}
+        </code-block>
+    </snippet>
+
     <snippet id="d_f2">
         <code-block lang="tex">
             \begin{equation} d_{f2} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="worm_gear_d_f2">
+        <code-block lang="tex">
+            \begin{equation} d_{th}-2h \end{equation}
         </code-block>
     </snippet>
 
@@ -660,6 +822,12 @@
         </code-block>
     </snippet>
 
+    <snippet id="L">
+        <code-block lang="tex">
+            \begin{equation}L\end{equation}
+        </code-block>
+    </snippet>
+
     <snippet id="H">
         <code-block lang="tex">
             \begin{equation}H\end{equation}
@@ -755,9 +923,33 @@
         </code-block>
     </snippet>
 
+    <snippet id="d_1">
+        <code-block lang="tex">
+            \begin{equation} d_{1} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="d_2">
+        <code-block lang="tex">
+            \begin{equation} d_{2} \end{equation}
+        </code-block>
+    </snippet>
+
     <snippet id="z">
         <code-block lang="tex">
             \begin{equation} z \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="z_1">
+        <code-block lang="tex">
+            \begin{equation} z_{1} \end{equation}
+        </code-block>
+    </snippet>
+
+    <snippet id="z_2">
+        <code-block lang="tex">
+            \begin{equation} z_{2} \end{equation}
         </code-block>
     </snippet>
 

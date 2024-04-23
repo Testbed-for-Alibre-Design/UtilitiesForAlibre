@@ -38,7 +38,7 @@ namespace Bolsover.Involute.Model
             CircularBacklash = 0.0;
             Height = 20.0;
             HeightOfPitchLine = 0.0;
-            Style = GearStyle.External | GearStyle.Spur; // configures the gear as an external spur gear
+            Style = GearStyle.ExternalSpurGear; // configures the gear as an external spur gear
         }
 
         
@@ -104,6 +104,8 @@ namespace Bolsover.Involute.Model
             get => _profileShift;
             set => SetField(ref _profileShift, value);
         }
+
+        public double WormPitchDiameter { get; set; }
 
         public double HeightOfPitchLine
         {

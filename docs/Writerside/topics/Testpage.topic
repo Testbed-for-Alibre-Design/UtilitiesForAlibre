@@ -8,11 +8,18 @@
     <p>Start typing here...</p>
     <p><i>italic</i></p>
     <p><b>bold</b></p>
-    <p><s>strikethrough</s></p>
+    <p><s>strikethrough</s>
 
+
+    </p>
+
+    <deflist>
+        <def title="Foo">Description of "Foo"</def>
+        <def title="Bar">Description of "Bar"</def>
+        <def title="Baz">Description of "Baz"</def>
+    </deflist>
 
     <code-block lang="d2">
-        direction: right
         utils: Utilities
         utils.shortcuts: Shortcuts
         utils.shortcuts.keyboard: Keyboard
@@ -24,6 +31,7 @@
 
         utils.gears: Gears
         utils.cycloidal: Cycloidal
+        direction: right
         utils.involute: Involute
         utils.gears -> utils.cycloidal
         utils.gears -> utils.involute
@@ -53,4 +61,6 @@
         bevelInvolute -> standardBevel
         bevelInvolute -> gleasonBevel
     </code-block>
+
+
 </topic>

@@ -128,9 +128,6 @@ namespace Bolsover.RackPinion.Presenter
             _view.EditHelixAngleEvent += ViewOnEditHelixAngleEvent;
             _view.EditGearHeightEvent += ViewOnEditGearHeightEvent;
 
-            // Model.Gear.GearChanged += GearDesignInputParamsOnGearChanged;
-            // Model.Pinion.GearChanged += GearDesignInputParamsOnGearChanged;
-           //      RackModel.RackChanged += RackModelOnRackChanged;
         }
 
         private void GearDesignInputParamsOnGearChanged()

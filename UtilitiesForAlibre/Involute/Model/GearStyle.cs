@@ -32,7 +32,20 @@ namespace Bolsover.Involute.Model
         Bevel = 0b_1000_0000, //128
         Crown = 0b_1_0000_0000, //256
         Planetary = 0b_10_0000_0000, //512 
-        Cycloidal = 0b_100_0000_0000 //1024  
+        Cycloidal = 0b_100_0000_0000, //1024  
+        Gear = 0b_1000_0000_0000, //2048
+        Pinion = 0b_0001_0000_0000_0000, //4096
+        Standard = 0b_0010_0000_0000_0000, //4096
+        Gleason = 0b_0100_0000_0000_0000, //4096
+        BevelStandard = Bevel | Standard,
+        BevelGleason = Bevel | Gleason,
+        ExternalSpurGear = External | Spur | Gear,
+        ExternalSpurPinion = External | Spur | Pinion,
+        ExternalHelicalGear = External | Helical | Gear,
+        ExternalHelicalPinion = External | Helical | Pinion,
+        InternalSpurGear = Internal | Spur | Gear,
+        InternalHelicalGear = Internal | Helical | Gear
+        
         
     }
 }
