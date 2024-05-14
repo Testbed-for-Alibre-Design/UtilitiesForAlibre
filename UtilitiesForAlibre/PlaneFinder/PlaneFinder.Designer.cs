@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-
 namespace Bolsover.PlaneFinder
 {
     partial class PlaneFinder
@@ -8,7 +7,6 @@ namespace Bolsover.PlaneFinder
         /// Required designer variable.
         /// </summary>
         private IContainer components = null;
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -19,12 +17,9 @@ namespace Bolsover.PlaneFinder
             {
                 components.Dispose();
             }
-
             base.Dispose(disposing);
         }
-
         #region Windows Form Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -90,16 +85,11 @@ namespace Bolsover.PlaneFinder
             this.ResumeLayout(false);
             this.PerformLayout();
         }
-
         private System.Windows.Forms.Label label3;
-
         private System.Windows.Forms.TextBox sketchTextBox;
-
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox planeTextBox;
-
         private System.Windows.Forms.Label label1;
-
         #endregion
     }
 }

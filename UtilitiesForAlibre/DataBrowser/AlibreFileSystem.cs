@@ -4,49 +4,37 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using AlibreX;
-
 namespace Bolsover.DataBrowser
 {
     public sealed class AlibreFileSystem : IEquatable<AlibreFileSystem>, INotifyPropertyChanged
     {
         #region Private Properties
-
         private bool _isChecked;
         private ArrayList _children = new();
-
         #endregion
-
         #region Constructors
-
         public AlibreFileSystem(FileSystemInfo info)
         {
             Info = info;
             RetrieveAlibreData();
         }
-
         #endregion
-
         #region Public Properties
-
         public bool HasChildren()
         {
             return _children.Count > 0;
         }
-
-
         public FileSystemInfo Info { get; set; }
         public bool IsDirectory => AsDirectory != null;
         private DirectoryInfo AsDirectory => Info as DirectoryInfo;
         public FileInfo AsFile => Info as FileInfo;
         public string Name => Info.Name;
         public string FullName => Info.FullName;
-
         public bool IsChecked
         {
             get => _isChecked;
             set => SetPropertyField("IsChecked", ref _isChecked, value);
         }
-
         public string AlibreDescription { get; set; }
         public ADUnits AlibreAngleDisplayUnits { get; set; }
         public double AlibreDensity { get; set; }
@@ -80,26 +68,20 @@ namespace Bolsover.DataBrowser
         public string AlibreTitle { get; set; }
         public string AlibreVendor { get; set; }
         public string AlibreWebLink { get; set; }
-
         public ArrayList Children
         {
             get => _children;
             set => _children = value;
         }
-
         #endregion
-
-
         public bool Equals(AlibreFileSystem other)
         {
             if (ReferenceEquals(null, other))
             {
                 return false;
             }
-
             return ReferenceEquals(this, other) || Equals(other.Info.FullName, Info.FullName);
         }
-
         /*
          * Utility to check if file is locked or open elsewhere
          */
@@ -118,11 +100,9 @@ namespace Bolsover.DataBrowser
                 //or does not exist (has already been processed)
                 return true;
             }
-
             //file is not locked
             return false;
         }
-
         /*
          * Retrieves data from the Alibre Session and populates the corresponding fields in the AlibreFileSystem rowObject
          */
@@ -181,13 +161,11 @@ namespace Bolsover.DataBrowser
                 }
             }
         }
-
         private void ReadDrawingProperties(IADDrawingProperties designProperties)
         {
             AlibreDescription = designProperties.Description;
             AlibrePartNo = designProperties.Number;
         }
-
         private void ReadDesignProperties(IADDesignProperties designProperties)
         {
             AlibreDescription = designProperties.Description;
@@ -244,42 +222,34 @@ namespace Bolsover.DataBrowser
             AlibreVendor = (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_VENDOR);
             AlibreWebLink = (string) designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_WEBLINK);
         }
-
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
             {
                 return false;
             }
-
             if (ReferenceEquals(this, obj))
             {
                 return true;
             }
-
             if (obj.GetType() != typeof(AlibreFileSystem))
             {
                 return false;
             }
-
             return Equals((AlibreFileSystem) obj);
         }
-
         public override int GetHashCode()
         {
             return Info != null ? Info.FullName.GetHashCode() : 0;
         }
-
         public static bool operator ==(AlibreFileSystem left, AlibreFileSystem right)
         {
             return Equals(left, right);
         }
-
         public static bool operator !=(AlibreFileSystem left, AlibreFileSystem right)
         {
             return !Equals(left, right);
         }
-
         //
         // /// <summary>
         // /// Recursive method for walking component parts of an Alibre file
@@ -306,35 +276,24 @@ namespace Bolsover.DataBrowser
         //         }
         //     }
         // }
-
-       
         public IEnumerable GetFileSystemInfos()
         {
             if (!IsDirectory) return Children;
             foreach (var x in AsDirectory.GetFileSystemInfos())
             {
                 var alibreFileSystem = new AlibreFileSystem(x);
-
                 Children.Add(alibreFileSystem);
             }
-
             return Children;
         }
-
         #region INotifyPropertyChanged Members
-
         public event PropertyChangedEventHandler PropertyChanged;
-
         #endregion
-
-
         private void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             var handler = PropertyChanged;
             handler?.Invoke(this, e);
         }
-
-
         private void SetPropertyField<T>(string propertyName, ref T field, T newValue)
         {
             if (EqualityComparer<T>.Default.Equals(field, newValue)) return;

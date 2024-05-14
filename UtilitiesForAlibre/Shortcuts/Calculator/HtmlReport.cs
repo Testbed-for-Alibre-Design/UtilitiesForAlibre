@@ -5,19 +5,16 @@ using System.IO;
 using System.Text;
 using Bolsover.Shortcuts.Model;
 using DevExpress.Utils.Svg;
-
 namespace Bolsover.Shortcuts.Calculator
 {
     public class HtmlReport
     {
        private readonly int _maxrows = 20;
-
         public string BuildReport(string profile)
         {
             var userShortcuts = RetrieveUserShortcuts(profile);
             var standardShortcuts = RetrieveStandardShortcuts(profile);
             string[] titles = {"Icon", "Hint", "Shortcut"};
-
             if (userShortcuts.Count > 0)
             {
                 ShortcutsCalculator calculator = new();
@@ -33,13 +30,10 @@ namespace Bolsover.Shortcuts.Calculator
                         sc.ShortcutType = ShortcutType.Custom;
                     }
                 }
-
                 return BuildHtml(userShortcuts, titles, CalcTableCount(userShortcuts, _maxrows), false, profile);
             }
-
             return BuildHtml(standardShortcuts, titles, CalcTableCount(standardShortcuts, _maxrows), true, profile);
         }
-
         private string BuildHtml(List<AlibreShortcut> shortcuts, string[] titles, int subTables, bool isStandard, string profile)
         {
             StringBuilder sb = new();
@@ -51,13 +45,11 @@ namespace Bolsover.Shortcuts.Calculator
             sb.Append(BuildHtmlFooter());
             return sb.ToString();
         }
-
         private string BuildStyle()
         {
             return @"<style>  table, th, td {  border: 1px solid black;  border-collapse: collapse;  }  th, td {  padding: 5px;  text-align: left;  }  </style>
                 <style> table {float:left; margin-left: 5px; margin-right: 5px;} </style>";
         }
-
         private string BuildTableData(List<AlibreShortcut> shortcuts, string[] titles, int subTables)
         {
             StringBuilder sb = new();
@@ -74,11 +66,9 @@ namespace Bolsover.Shortcuts.Calculator
                     processedRows++;
                     j++;
                 }
-
                 processedRows = 0;
                 sb.Append(BuildTableFooter());
             }
-
             if (j < shortcuts.Count)
             {
                 sb.Append(BuildTableHeader());
@@ -88,16 +78,12 @@ namespace Bolsover.Shortcuts.Calculator
                     var alibreShortcut = shortcuts[i];
                     sb.Append(BuildRow(alibreShortcut));
                 }
-
                 sb.Append(BuildTableFooter());
             }
             {
-                
             }
-
             return sb.ToString();
         }
-
         private string BuildSingleTable(List<AlibreShortcut> shortcuts, string[] titles)
         {
             StringBuilder sb = new();
@@ -108,11 +94,9 @@ namespace Bolsover.Shortcuts.Calculator
                 var alibreShortcut = shortcuts[i];
                 sb.Append(BuildRow(alibreShortcut));
             }
-
             sb.Append(BuildTableFooter());
             return sb.ToString();
         }
-
         private string BuildRow(AlibreShortcut alibreShortcut)
         {
             StringBuilder sb = new();
@@ -136,7 +120,6 @@ namespace Bolsover.Shortcuts.Calculator
             sb.Append("</tr>");
             return sb.ToString();
         }
-
         /// <summary>
         /// Converts an SvgImage to a PNG format and returns it as a base64 string.
         /// </summary>
@@ -154,23 +137,19 @@ namespace Bolsover.Shortcuts.Calculator
             stream.Read(buffer, 0, (int) stream.Length);
             return Convert.ToBase64String(buffer);
         }
-
         private string BuildTableTitles(string[] titles)
         {
             StringBuilder sb = new();
             sb.Append("<tr>");
-
             foreach (var s in titles)
             {
                 sb.Append("<th>");
                 sb.Append(s);
                 sb.Append("</th>");
             }
-
             sb.Append("</tr>");
             return sb.ToString();
         }
-
         /// <summary>
         /// The main table is split into multiple tables to fit the page.
         /// 
@@ -181,38 +160,32 @@ namespace Bolsover.Shortcuts.Calculator
         {
             return shortcuts.Count / maxRows;
         }
-
         private List<AlibreShortcut> RetrieveUserShortcuts(string profile)
         {
             ShortcutsCalculator calculator = new();
             return calculator.RetrieveUserShortcutsByProfile(profile);
         }
-
         private List<AlibreShortcut> RetrieveStandardShortcuts(string profile)
         {
             ShortcutsCalculator calculator = new();
             return calculator.RetrieveStandardShortcutsByProfile(profile);
         }
-
         private string BuildTableHeader()
         {
             StringBuilder sb = new();
             sb.Append("<table>");
             return sb.ToString();
         }
-
         private string BuildTableFooter()
         {
             StringBuilder sb = new();
             sb.Append("</table>");
             return sb.ToString();
         }
-
         private string BuildBodyHeader(string profile, bool isStandard)
         {
             StringBuilder sb = new();
             sb.Append("<body>");
-            
             string texta =    $"<p><span style = \"color:black\">Black - Standard Shortcut " +
                               $"</span> <span style = \"color:red\">Red - Overridden Standard " +
                               $"</span><span style = \"color:blue\">Blue - Custom Shortcut " +
@@ -224,21 +197,18 @@ namespace Bolsover.Shortcuts.Calculator
             sb.Append(isStandard ? textb : texta);
             return sb.ToString();
         }
-
         private string BuildBodyFooter()
         {
             StringBuilder sb = new();
             sb.Append("</body>");
             return sb.ToString();
         }
-
         private string BuildHtmlHeader()
         {
             StringBuilder sb = new();
             sb.Append("<html>");
             return sb.ToString();
         }
-
         private string BuildHtmlFooter()
         {
             StringBuilder sb = new();

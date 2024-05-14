@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-
 namespace Bolsover.DataBrowser.Materials
 {
     partial class MaterialPicker
@@ -8,7 +7,6 @@ namespace Bolsover.DataBrowser.Materials
         /// Required designer variable.
         /// </summary>
         private IContainer components = null;
-
         /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
@@ -19,12 +17,9 @@ namespace Bolsover.DataBrowser.Materials
             {
                 components.Dispose();
             }
-
             base.Dispose(disposing);
         }
-
         #region Component Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -75,10 +70,8 @@ namespace Bolsover.DataBrowser.Materials
             ((System.ComponentModel.ISupportInitialize) (this.treeListView1)).EndInit();
             this.ResumeLayout(false);
         }
-
         private BrightIdeasSoftware.TreeListView treeListView1;
         private BrightIdeasSoftware.OLVColumn olvColumnName;
-
         #endregion
     }
 }

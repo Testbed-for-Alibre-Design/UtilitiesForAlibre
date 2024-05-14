@@ -2,18 +2,15 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using UtilitiesForAlibre.Properties;
-
 namespace Bolsover.Shortcuts.View
 {
     public partial class ColorPreferences : UserControl
     {
-        
         public ColorPreferences()
         {
             InitializeComponent();
             GetColors();
         }
-
         private void GetColors()
         {
            CtrlAltShiftButton.BackColor = Properties.Settings.Default.CtrlAltShiftColor;
@@ -30,8 +27,6 @@ namespace Bolsover.Shortcuts.View
            iconScaleUpDown.Value = (decimal) Properties.Settings.Default.AlibreIcon;
            hintTextUpDown.Value = Properties.Settings.Default.HintTextSize;
         }
-        
-
         private void CtrlAltShiftButton_Click(object sender, EventArgs e)
         {
             if (colorDialog.ShowDialog() != DialogResult.OK) return;
@@ -39,7 +34,6 @@ namespace Bolsover.Shortcuts.View
             Properties.Settings.Default.Save();
             CtrlAltShiftButton.BackColor = colorDialog.Color;
         }
-
         private void CtrlAltButton_Click(object sender, EventArgs e)
         {
             if (colorDialog.ShowDialog() != DialogResult.OK) return;
@@ -47,7 +41,6 @@ namespace Bolsover.Shortcuts.View
             Properties.Settings.Default.Save();
             CtrlAltButton.BackColor = colorDialog.Color;
         }
-
         private void CtrlShiftButton_Click(object sender, EventArgs e)
         {
             if (colorDialog.ShowDialog() != DialogResult.OK) return;
@@ -55,7 +48,6 @@ namespace Bolsover.Shortcuts.View
             Properties.Settings.Default.Save();
             CtrlShiftButton.BackColor = colorDialog.Color;
         }
-
         private void AltShiftButton_Click(object sender, EventArgs e)
         {
             if (colorDialog.ShowDialog() != DialogResult.OK) return;
@@ -63,7 +55,6 @@ namespace Bolsover.Shortcuts.View
             Properties.Settings.Default.Save();
             AltShiftButton.BackColor = colorDialog.Color;
         }
-
         private void CtrlButton_Click(object sender, EventArgs e)
         {
             if (colorDialog.ShowDialog() != DialogResult.OK) return;
@@ -71,7 +62,6 @@ namespace Bolsover.Shortcuts.View
             Properties.Settings.Default.Save();
             CtrlButton.BackColor = colorDialog.Color;
         }
-
         private void AltButton_Click(object sender, EventArgs e)
         {
             if (colorDialog.ShowDialog() != DialogResult.OK) return;
@@ -79,7 +69,6 @@ namespace Bolsover.Shortcuts.View
             Properties.Settings.Default.Save();
             AltButton.BackColor = colorDialog.Color;
         }
-
         private void ShiftButton_Click(object sender, EventArgs e)
         {
             if (colorDialog.ShowDialog() != DialogResult.OK) return;
@@ -87,7 +76,6 @@ namespace Bolsover.Shortcuts.View
             Properties.Settings.Default.Save();
             ShiftButton.BackColor = colorDialog.Color;
         }
-
         private void NoModifierButton_Click(object sender, EventArgs e)
         {
             if (colorDialog.ShowDialog() != DialogResult.OK) return;
@@ -95,7 +83,6 @@ namespace Bolsover.Shortcuts.View
             Properties.Settings.Default.Save();
             NoModifierButton.BackColor = colorDialog.Color;
         }
-
         private void ModifierKeyButton_Click(object sender, EventArgs e)
         {
             if (colorDialog.ShowDialog() != DialogResult.OK) return;
@@ -103,7 +90,6 @@ namespace Bolsover.Shortcuts.View
             Properties.Settings.Default.Save();
             ModifierKeyButton.BackColor = colorDialog.Color;
         }
-
         private void ResetDefaultsButton_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.CtrlAltShiftColor = Color.Red;
@@ -122,18 +108,12 @@ namespace Bolsover.Shortcuts.View
             Properties.Settings.Default.Save();
             GetColors();
         }
-
-      
-
-    
-
         private void textSizeUpDown_ValueChanged(object sender, EventArgs e)
         {
             if (sender is not NumericUpDown numericUpDown) return;
             var newValue = (short) numericUpDown.Value;
             Properties.Settings.Default.KeyTextSize = newValue;
         }
-
         private void textColorButton_Click(object sender, EventArgs e)
         {
             if (colorDialog.ShowDialog() != DialogResult.OK) return;
@@ -141,14 +121,12 @@ namespace Bolsover.Shortcuts.View
             Properties.Settings.Default.Save();
             textColorButton.ForeColor = colorDialog.Color;
         }
-
         private void iconScaleUpDown_ValueChanged(object sender, EventArgs e)
         {
             if (sender is not NumericUpDown numericUpDown) return;
             var newValue = (double) numericUpDown.Value;
             Properties.Settings.Default.AlibreIcon = newValue;
         }
-
         private void hintTextUpDown_ValueChanged(object sender, EventArgs e)
         {
             if (sender is not NumericUpDown numericUpDown) return;

@@ -1,8 +1,6 @@
 ﻿using System;
-
 namespace Bolsover.Involute.Model
 {
-    
     /// <summary>
     /// This enum is essentially a collection of flags that can be combined to represent the style of a gear.
     /// 
@@ -33,6 +31,5 @@ namespace Bolsover.Involute.Model
         Crown = 0b_1_0000_0000, //256
         Planetary = 0b_10_0000_0000, //512 
         Cycloidal = 0b_100_0000_0000 //1024  
-        
     }
 }

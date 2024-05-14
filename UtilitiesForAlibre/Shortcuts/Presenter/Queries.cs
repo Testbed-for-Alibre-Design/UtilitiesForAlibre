@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Bolsover.Shortcuts.Model;
-
 namespace Bolsover.Shortcuts.Presenter
 {
     public static class Queries
     {
-        
         public static List<AlibreShortcut> RetrieveShortcutsByModifierType(IEnumerable<AlibreShortcut> shortcuts, ShortcutModifierType shortcutModifierType)
         {
             var shortcutQuery = from shortcut in shortcuts
@@ -14,7 +12,5 @@ namespace Bolsover.Shortcuts.Presenter
                 select shortcut;
             return shortcutQuery.ToList();
         }
-        
-        
     }
 }

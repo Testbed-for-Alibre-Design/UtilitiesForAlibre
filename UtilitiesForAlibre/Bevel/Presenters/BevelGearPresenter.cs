@@ -8,7 +8,6 @@ using Bolsover.Bevel.Models;
 using Bolsover.Bevel.Views;
 using static Bolsover.Bevel.Calculator.BevelGearCalculator;
 using static Bolsover.Utils.LatexUtils;
-
 namespace Bolsover.Bevel.Presenters
 {
     public sealed class BevelGearPresenter
@@ -17,8 +16,6 @@ namespace Bolsover.Bevel.Presenters
         private IBevelGear _pinion;
         private IBevelGear _gear;
         private bool _doOnce = false;
-
-
         public BevelGearPresenter(IBevelGearView view)
         {
             _view = view;
@@ -30,7 +27,6 @@ namespace Bolsover.Bevel.Presenters
             // ((BevelGearView)_view).documentationLink.Links.Add(0,2,"http://www.bolsover.com/UtilitiesForAlibre");
             // ((BevelGearView)_view).documentationLink.LinkClicked += DocumentationLinkOnLinkClicked;
         }
-
         private void SetupEvents()
         {
             _view.EditModuleEvent += ViewOnEditModuleEvent;
@@ -46,7 +42,6 @@ namespace Bolsover.Bevel.Presenters
             _pinion.Updated += GearsOnUpdated;
             _gear.Updated += GearsOnUpdated;
         }
-
         private void InitGearDefaults()
         {
             _pinion = new BevelGear
@@ -72,7 +67,6 @@ namespace Bolsover.Bevel.Presenters
                 GearType = BevelGearType.Standard
             };
         }
-
         private void GearsOnUpdated(object sender, EventArgs e)
         {
             StandardCalculations();
@@ -85,7 +79,6 @@ namespace Bolsover.Bevel.Presenters
             }
             UpdateNotesLabel(_gear.GearType);
         }
-
         private void SetupObjectListView()
         {
             ((BevelGearView)_view).olvColumn1.AspectGetter = rowObject => ((BevelGearData)rowObject).Item;
@@ -96,8 +89,6 @@ namespace Bolsover.Bevel.Presenters
             ((BevelGearView)_view).olvColumn6.AspectGetter = rowObject => ((BevelGearData)rowObject).GearImperialValue;
             ((BevelGearView)_view).olvColumn7.AspectGetter = rowObject => ((BevelGearData)rowObject).GearNotes;
         }
-
-
         private void SetupLabelLatexImages()
         {
             var view = (BevelGearView)_view;
@@ -110,42 +101,33 @@ namespace Bolsover.Bevel.Presenters
             view.FaceWidthLabel.Image = CreateImageFromLatex(BevelLatexStrings.FaceWidthLatex);
             view.FaceWidthFormulaLabel.Image = CreateImageFromLatex(BevelLatexStrings.FaceWidthFormulaLatex);
         }
-
-
         private void ViewOnCancelEvent(object sender, EventArgs e)
         {
             var view = (BevelGearView)_view;
             view.ParentForm?.Dispose();
         }
-
-
         private void ViewOnEditFaceWidthEvent(object sender, EventArgs e)
         {
             _pinion.FaceWidth = (double)((NumericUpDown)sender).Value;
             _gear.FaceWidth = (double)((NumericUpDown)sender).Value;
         }
-
         private void ViewOnEditGearHandEvent(object sender, EventArgs e)
         {
             _gear.Hand = (string)((ComboBox)sender).SelectedItem;
         }
-
         private void ViewOnEditGearNumberOfTeethEvent(object sender, EventArgs e)
         {
             _gear.NumberOfTeeth = (double)((NumericUpDown)sender).Value;
         }
-
         private void ViewOnEditPinionHandEvent(object sender, EventArgs e)
         {
             _pinion.Hand = (string)((ComboBox)sender).SelectedItem;
         }
-
         private void ViewOnEditGearTypeEvent(object sender, EventArgs e)
         {
             _gear.GearType = RadioButtonToGearType((RadioButton)sender);
             _pinion.GearType = RadioButtonToGearType((RadioButton)sender);
         }
-
         private void UpdateNotesLabel(BevelGearType gearType)
         {
             var view = (BevelGearView)_view;
@@ -157,7 +139,6 @@ namespace Bolsover.Bevel.Presenters
                 _ => ""
             };
         }
-
         private static BevelGearType RadioButtonToGearType(RadioButton sender)
         {
             switch (sender.Name)
@@ -170,7 +151,6 @@ namespace Bolsover.Bevel.Presenters
                     return BevelGearType.Standard;
             }
         }
-
         private void ViewOnEditPinionNumberOfTeethEvent(object sender, EventArgs e)
         {
             var value = (double)((NumericUpDown)sender).Value;
@@ -180,54 +160,44 @@ namespace Bolsover.Bevel.Presenters
                 value = 13;
                 ((BevelGearView)_view).NumberOfTeethPinionNumericUpDown.Value = 13;
             }
-
             _pinion.NumberOfTeeth = value;
         }
-
         private void ViewOnEditSpiralAngleEvent(object sender, EventArgs e)
         {
             _pinion.SpiralAngle = (double)((NumericUpDown)sender).Value;
             _gear.SpiralAngle = (double)((NumericUpDown)sender).Value;
         }
-
         private void ViewOnEditPressureAngleEvent(object sender, EventArgs e)
         {
             _pinion.PressureAngle = (double)((NumericUpDown)sender).Value;
             _gear.PressureAngle = (double)((NumericUpDown)sender).Value;
         }
-
         private void ViewOnEditShaftAngleEvent(object sender, EventArgs e)
         {
             _pinion.ShaftAngle = (double)((NumericUpDown)sender).Value;
             _gear.ShaftAngle = (double)((NumericUpDown)sender).Value;
         }
-
         private void ViewOnBuildGearEvent(object sender, EventArgs e)
         {
             const string saveFile = "BevelPleaseSaveAs.AD_PRT";
             const string template = "BevelGearTemplate.AD_PRT";
-
             BuildBevelGear(saveFile, template, _gear);
         }
-
         private void ViewOnBuildPinionEvent(object sender, EventArgs e)
         {
             const string saveFile = "BevelPleaseSaveAs.AD_PRT";
             const string template = "BevelGearTemplate.AD_PRT";
             BuildBevelGear(saveFile, template, _pinion);
         }
-
         private void ViewOnEditModuleEvent(object sender, EventArgs e)
         {
             _pinion.Module = (double)((NumericUpDown)sender).Value;
             _gear.Module = (double)((NumericUpDown)sender).Value;
         }
-
         private void BuildBevelGear(string saveFile, string template, IBevelGear bevelGear)
         {
             BevelGearBuilder.Build(saveFile, template, bevelGear);
         }
-
         private List<BevelGearData> BuildBevelGearData()
         {
             var data = new List<BevelGearData>();
@@ -251,7 +221,6 @@ namespace Bolsover.Bevel.Presenters
                 "", _gear.BaseDiameter.ToString("0.000 mm"), (_gear.BaseDiameter / 25.4).ToString("0.000 in"), ""));
             data.Add(new BevelGearData("Root Diameter", _pinion.RootDiameter.ToString("0.000 mm"), (_pinion.RootDiameter / 25.4).ToString("0.000 in"),
                 "", _gear.RootDiameter.ToString("0.000 mm"), (_gear.RootDiameter / 25.4).ToString("0.000 in"), ""));
-
             data.Add(new BevelGearData("Cone Distance", _pinion.ConeDistance.ToString("0.000 mm"), (_pinion.ConeDistance / 25.4).ToString("0.000 in"),
                 "", _gear.ConeDistance.ToString("0.000 mm"), (_gear.ConeDistance / 25.4).ToString("0.000 in"), ""));
             data.Add(new BevelGearData("Addendum", _pinion.Addendum.ToString("0.000 mm"), (_pinion.Addendum / 25.4).ToString("0.000 in"), "",
@@ -283,11 +252,8 @@ namespace Bolsover.Bevel.Presenters
                     _gear.InterToothDegrees.ToString("0.000°"),
                     "", ""));
             }
-
             return data;
         }
-
-
         private void StandardCalculations()
         {
             _pinion.PitchDiameter = CalculatePitchDiameter(_pinion, _gear).Item1;

@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-
 namespace Shortcuts.Shortcuts.View
 {
     partial class KeyboardShortcutForm
@@ -8,7 +7,6 @@ namespace Shortcuts.Shortcuts.View
         /// Required designer variable.
         /// </summary>
         private IContainer components = null;
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -19,12 +17,9 @@ namespace Shortcuts.Shortcuts.View
             {
                 components.Dispose();
             }
-
             base.Dispose(disposing);
         }
-
         #region Windows Form Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -124,18 +119,12 @@ namespace Shortcuts.Shortcuts.View
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
         }
-
         private System.Windows.Forms.Button buttonPrint;
         private System.Windows.Forms.Button buttonSave;
-
         private System.Windows.Forms.Label label1;
-
         public System.Windows.Forms.ComboBox comboBox1;
-
         public System.Windows.Forms.WebBrowser webBrowser1;
-
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-
         #endregion
     }
 }

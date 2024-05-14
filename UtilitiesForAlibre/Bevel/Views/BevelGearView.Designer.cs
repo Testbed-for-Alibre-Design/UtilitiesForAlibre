@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
-
 namespace Bolsover.Bevel.Views
 {
     partial class BevelGearView
@@ -9,7 +8,6 @@ namespace Bolsover.Bevel.Views
         /// Required designer variable.
         /// </summary>
         private IContainer components = null;
-
         /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
@@ -20,12 +18,9 @@ namespace Bolsover.Bevel.Views
             {
                 components.Dispose();
             }
-
             base.Dispose(disposing);
         }
-
         #region Component Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -633,9 +628,7 @@ namespace Bolsover.Bevel.Views
             this.gearTypeGroupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
         }
-
         public System.Windows.Forms.Label NotesLabel;
-
         public System.Windows.Forms.Label standardLabel;
         public System.Windows.Forms.Label gleasonLabel;
         public BrightIdeasSoftware.OLVColumn olvColumn1;
@@ -645,16 +638,10 @@ namespace Bolsover.Bevel.Views
         public BrightIdeasSoftware.OLVColumn olvColumn5;
         public BrightIdeasSoftware.OLVColumn olvColumn6;
         public BrightIdeasSoftware.OLVColumn olvColumn7;
-
-        
         public BrightIdeasSoftware.ObjectListView objectListView1;
-
         private System.Windows.Forms.GroupBox gearTypeGroupBox1;
-
         public System.Windows.Forms.RadioButton standardRadioButton;
         public System.Windows.Forms.RadioButton gleasonRadioButton;
-
-
         public System.Windows.Forms.NumericUpDown FaceWidthNumericUpDown;
         private System.Windows.Forms.TableLayoutPanel TableLayoutPanel1;
 private System.Windows.Forms.TableLayoutPanel TableLayoutPanel4;
@@ -683,7 +670,6 @@ public System.Windows.Forms.Label FaceWidthFormulaLabel;
 private System.Windows.Forms.Button CancelButton;
 private System.Windows.Forms.Button PinionButton;
 private System.Windows.Forms.Button BuildGearButton;
-
 #endregion
     }
 }

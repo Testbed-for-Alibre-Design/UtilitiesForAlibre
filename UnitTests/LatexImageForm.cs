@@ -3,7 +3,6 @@ using System.Reflection;
 using System.Windows.Forms;
 using Bolsover.Involute.Images;
 using Bolsover.Utils;
-
 namespace UnitTests
 {
     public class LatexImageForm : Form
@@ -14,19 +13,14 @@ namespace UnitTests
         private readonly GearLatexStrings _instance = new();
         private Button _nextbutton;
         private Button _previousbutton;
-
-
         private Label _latexLabel;
         private FieldInfo _info;
-
         public LatexImageForm()
         {
             InitializeComponent();
             _props = typeof(GearLatexStrings).GetFields();
             _latexLabel.Text = "Click next to check Latex formulae";
         }
-
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -77,29 +71,22 @@ namespace UnitTests
             Text = "GearsForm";
             ResumeLayout(false);
         }
-
-
-        
-
         private void NextbuttonClick(object sender, EventArgs e)
         {
             if (_index >= _props.Length - 1) return;
             _info = _props[_index++];
             var value = _info.Name;
             var property = _instance.GetType().GetField(value).GetValue(_instance);
-
             if (property == null) return;
             _latexLabel.Text = value;
             _latexLabel.Image = LatexUtils.CreateImageFromLatex(property.ToString());
         }
-
         private void previousButton_Click(object sender, EventArgs e)
         {
             if (_index <= 0) return;
             _info = _props[_index--];
             var value = _info.Name;
             var property = _instance.GetType().GetField(value).GetValue(_instance);
-
             if (property == null) return;
             _latexLabel.Text = value;
             _latexLabel.Image = LatexUtils.CreateImageFromLatex(property.ToString());

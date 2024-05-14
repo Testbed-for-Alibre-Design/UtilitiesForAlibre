@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-
 namespace Bolsover.Involute.View
 {
     partial class GearView
@@ -8,7 +7,6 @@ namespace Bolsover.Involute.View
         /// Required designer variable.
         /// </summary>
         private IContainer components = null;
-
         /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
@@ -19,12 +17,9 @@ namespace Bolsover.Involute.View
             {
                 components.Dispose();
             }
-
             base.Dispose(disposing);
         }
-
         #region Component Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -923,19 +918,13 @@ namespace Bolsover.Involute.View
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
             this.ResumeLayout(false);
         }
-
-
         public BrightIdeasSoftware.OLVColumn olvColumn1;
         public BrightIdeasSoftware.OLVColumn olvColumn2;
         public BrightIdeasSoftware.OLVColumn olvColumn3;
         public BrightIdeasSoftware.OLVColumn olvColumn4;
-
         public BrightIdeasSoftware.ObjectListView objectListView1;
-
         private System.Windows.Forms.ToolTip toolTip;
-
         public System.Windows.Forms.TextBox xModTextBox;
-
         public System.Windows.Forms.RadioButton intRadioButton;
         private System.Windows.Forms.Label totalShiftLabel;
         private System.Windows.Forms.Label assignedTotalProfileShiftSymbol;
@@ -991,8 +980,6 @@ namespace Bolsover.Involute.View
         private System.Windows.Forms.Label teehLabel;
         private System.Windows.Forms.Label heightLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-      
-
         #endregion
     }
     }

@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Windows.Forms;
 using AlibreX;
 using BrightIdeasSoftware;
-
 namespace Bolsover.DataBrowser.Materials
 {
     [DefaultProperty("Value")]
@@ -16,8 +15,6 @@ namespace Bolsover.DataBrowser.Materials
         private MaterialNode _root;
         private string _originalValue = null;
         private MaterialNode _value = null;
-
-
         public MaterialPicker(string value)
         {
             Console.WriteLine(value);
@@ -29,13 +26,10 @@ namespace Bolsover.DataBrowser.Materials
             // actually uses cellEditStarting to detect when an item has been selected
             treeListView1.CellEditStarting += HandleCellEditStarting;
         }
-
-
         /*
          * Event handler used when a material item has been selected
          */
         public event EventHandler<SelectedItemEventArgs> ItemHasBeenSelected;
-
         private void HandleCellEditStarting(object sender, CellEditEventArgs e)
         {
             _value = (MaterialNode) e.RowObject;
@@ -43,12 +37,9 @@ namespace Bolsover.DataBrowser.Materials
             var handler = ItemHasBeenSelected;
             handler?.Invoke(this, new SelectedItemEventArgs
                 {SelectedChoice = _value});
-
             // dispose the MaterialPicker
             Dispose();
         }
-
-
         /*
          * Initial preparation of the materials tree
          * Creates the root object and immediate subordinate libraries
@@ -73,14 +64,10 @@ namespace Bolsover.DataBrowser.Materials
                         };
                     child.AddChild(materialNode);
                 }
-
                 WalkMaterials(library, child, child);
             }
-
             return _root;
         }
-
-
         /*
          * Recursive routine to add all materials in library folders.
          * Grr... hate this next bit
@@ -92,7 +79,6 @@ namespace Bolsover.DataBrowser.Materials
             {
                 var f = new MaterialNode(folder.Name);
                 parent.AddChild(f);
-
                 foreach (IADMaterial material in folder.Materials)
                 {
                     var subMaterial = new MaterialNode(material.Name)
@@ -104,14 +90,12 @@ namespace Bolsover.DataBrowser.Materials
                     // if this subMaterial is also in the toplevel materials remove from top level
                     toplevel.RemoveChild(subMaterial);
                 }
-
                 foreach (IADMaterialLibrary subLibrary in folder.SubFolders)
                 {
                     WalkMaterials(subLibrary, f, toplevel);
                 }
             }
         }
-
         /*
          * Nasty routine to obtain material guid.
          */
@@ -129,19 +113,14 @@ namespace Bolsover.DataBrowser.Materials
             var guid = propertyInfo2.GetValue(alibreMaterial);
             return (string) guid;
         }
-
         private void SetupColumns()
         {
             ConfigureAspectGetters();
         }
-
-
         private void ConfigureAspectGetters()
         {
             olvColumnName.AspectGetter = rowObject => ((MaterialNode) rowObject).NodeName;
         }
-
-
         private void SetupTree()
         {
             treeListView1.CanExpandGetter = rowObject => ((MaterialNode) rowObject).CanExpand;
@@ -161,7 +140,6 @@ namespace Bolsover.DataBrowser.Materials
                 { PrepareMaterialsTree() };
             treeListView1.Roots = roots;
         }
-
         public class SelectedItemEventArgs : EventArgs
         {
             public MaterialNode SelectedChoice { get; set; }

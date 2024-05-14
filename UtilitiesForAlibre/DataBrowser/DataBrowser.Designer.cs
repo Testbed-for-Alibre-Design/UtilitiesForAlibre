@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-
 namespace Bolsover.DataBrowser{
     partial class DataBrowserForm
     {
@@ -7,7 +6,6 @@ namespace Bolsover.DataBrowser{
         /// Required designer variable.
         /// </summary>
         private IContainer components = null;
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -18,12 +16,9 @@ namespace Bolsover.DataBrowser{
             {
                 components.Dispose();
             }
-
             base.Dispose(disposing);
         }
-
         #region Windows Form Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -373,19 +368,12 @@ namespace Bolsover.DataBrowser{
             ((System.ComponentModel.ISupportInitialize)(this.treeListView)).EndInit();
             this.ResumeLayout(false);
         }
-
         private System.Windows.Forms.Button buttonPartNo;
-
         private System.Windows.Forms.Button buttonSaveState;
         private System.Windows.Forms.Button buttonRestoreState;
-
-
         private System.Windows.Forms.Label progressLabel;
-
         private System.Windows.Forms.CheckBox checkBoxCopy;
-
         private System.Windows.Forms.CheckBox checkBoxFilter;
-
         private BrightIdeasSoftware.OLVColumn olvColumnAlibreModified;
         private BrightIdeasSoftware.OLVColumn olvColumnAlibreProduct;
         private BrightIdeasSoftware.OLVColumn olvColumnAlibreReceivedFrom;
@@ -416,9 +404,6 @@ namespace Bolsover.DataBrowser{
         private BrightIdeasSoftware.OLVColumn olvColumnType;
         private BrightIdeasSoftware.OLVColumn olvColumnName;
         private BrightIdeasSoftware.TreeListView treeListView;
-
         #endregion
-
     }
-
 }

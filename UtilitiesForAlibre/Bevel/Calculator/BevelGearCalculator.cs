@@ -1,7 +1,6 @@
 ﻿using System;
 using Bolsover.Bevel.Models;
 using static Bolsover.Utils.ConversionUtils;
-
 namespace Bolsover.Bevel.Calculator
 {
     public static class BevelGearCalculator
@@ -20,9 +19,7 @@ namespace Bolsover.Bevel.Calculator
             {
                 case < 13:
                     throw new ArgumentOutOfRangeException("Number of teeth must be over 13");
-               
             }
-
             var ratio = pinion.NumberOfTeeth / gear.NumberOfTeeth;
             double k;
             if (pinion.NumberOfTeeth > 24)
@@ -40,7 +37,6 @@ namespace Bolsover.Bevel.Calculator
             var t1 = p - t2;
             return (t1 * 25.4, t2 * 25.4);
         }
-
         public static (double, double) CalculateCircularThicknessDegrees(IBevelGear pinion, IBevelGear gear)
         {
             var ct = CalculateCircularThickness(pinion, gear);
@@ -49,7 +45,6 @@ namespace Bolsover.Bevel.Calculator
             var r2 = CalculateAngularDimension(d.Item2 / 2, ct.Item2);
             return (r1, r2);
         }
-
         public static (double, double) CalculateInterToothDegrees(IBevelGear pinion, IBevelGear gear)
         {
             var z = CalculateTredgoldEquivalentToothCount(pinion, gear);
@@ -58,8 +53,6 @@ namespace Bolsover.Bevel.Calculator
             var ct = CalculateCircularThicknessDegrees(pinion, gear);
             return (s1 - ct.Item1, s2 - ct.Item2);
         }
-
-
         public static (double, double) CalculateKFactor(IBevelGear pinion, IBevelGear gear)
         {
             if (pinion.GearType == BevelGearType.Standard || pinion.NumberOfTeeth < 13 || pinion.NumberOfTeeth > 24)
@@ -70,17 +63,13 @@ namespace Bolsover.Bevel.Calculator
             {
                 k = 0;
             }
-
             return (k, k);
         }
-
         private static double CalculateAngularDimension(double radius, double circumferentialDimension)
         {
             var angleInDegrees = Degrees(Math.Atan(circumferentialDimension / radius));
             return angleInDegrees;
         }
-
-
        public static (double, double) CalculateWholeDepth(IBevelGear pinion, IBevelGear gear)
         {
             var ha = CalculateAddendum(pinion, gear);
@@ -89,14 +78,12 @@ namespace Bolsover.Bevel.Calculator
             var h2 = hf.Item2 + ha.Item2;
             return (h1, h2);
         }
-
         public static (double, double) CalculatePitchDiameter(IBevelGear pinion, IBevelGear gear)
         {
             var d1 = pinion.NumberOfTeeth * pinion.Module;
             var d2 = gear.NumberOfTeeth * pinion.Module;
             return (d1, d2);
         }
-
         public static (double, double) CalculateBaseDiameter(IBevelGear pinion, IBevelGear gear)
         {
             var d = CalculatePitchDiameter(pinion, gear);
@@ -105,7 +92,6 @@ namespace Bolsover.Bevel.Calculator
             var db2 = d.Item2 * Math.Cos(Radians(alpha)); // Base Diameter of Pinion
             return (db1, db2);
         }
-
         public static (double, double) CalculateRootDiameter(IBevelGear pinion, IBevelGear gear)
         {
             var d = CalculatePitchDiameter(pinion, gear);
@@ -114,8 +100,6 @@ namespace Bolsover.Bevel.Calculator
             var rd2 = d.Item2 - (2 * hf.Item2);
             return (rd1, rd2);
         }
-
-
         public static (double, double) CalculatePitchConeAngle(IBevelGear pinion, IBevelGear gear)
         {
             var ratio1 = gear.NumberOfTeeth / pinion.NumberOfTeeth;
@@ -125,8 +109,6 @@ namespace Bolsover.Bevel.Calculator
             var pitchConeAngleGear = pinion.ShaftAngle - pitchConeAnglePinion;
             return (pitchConeAnglePinion, pitchConeAngleGear);
         }
-
-
         public static (double, double) CalculatePitchConeDistance(IBevelGear pinion, IBevelGear gear)
         {
             var d = CalculatePitchDiameter(pinion, gear);
@@ -135,15 +117,11 @@ namespace Bolsover.Bevel.Calculator
             var cd2 = d.Item2 / (2 * Math.Sin(Radians(delta.Item2)));
             return (cd1, cd2);
         }
-
-
         public static (double, double) CalculateBackConeAngle(IBevelGear pinion, IBevelGear gear)
         {
             var a = CalculatePitchConeAngle(pinion, gear);
             return (90 - a.Item1, 90 - a.Item2);
         }
-
-
         public static (double, double) CalculateAddendum(IBevelGear pinion, IBevelGear gear)
         {
             return gear.GearType switch
@@ -153,7 +131,6 @@ namespace Bolsover.Bevel.Calculator
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
-
         public static (double, double) CalculateDedendum(IBevelGear pinion, IBevelGear gear)
         {
             return gear.GearType switch
@@ -163,21 +140,18 @@ namespace Bolsover.Bevel.Calculator
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
-
         private static (double, double) CalculateStandardAddendum(IBevelGear pinion, IBevelGear gear)
         {
             var ha1 = 1.0 * pinion.Module;
             var ha2 = 1.0 * gear.Module;
             return (ha1, ha2);
         }
-
         private static (double, double) CalculateStandardDedendum(IBevelGear pinion, IBevelGear gear)
         {
             var hf1 = 1.25 * pinion.Module;
             var hf2 = 1.25 * gear.Module;
             return (hf1, hf2);
         }
-
         private static (double, double) CalculateGleasonAddendum(IBevelGear pinion, IBevelGear gear)
         {
             var delta = CalculatePitchConeAngle(pinion, gear);
@@ -189,7 +163,6 @@ namespace Bolsover.Bevel.Calculator
             var ha1 = 2 * gear.Module - ha2;
             return (ha1, ha2);
         }
-
         private static (double, double) CalculateGleasonDedendum(IBevelGear pinion, IBevelGear gear)
         {
             var ha = CalculateGleasonAddendum(pinion, gear);
@@ -197,7 +170,6 @@ namespace Bolsover.Bevel.Calculator
             var hf2 = 2.188 * gear.Module - ha.Item2;
             return (hf1, hf2);
         }
-
         public static (double, double) CalculateDedendumAngle(IBevelGear pinion, IBevelGear gear)
         {
             var hf = CalculateDedendum(pinion, gear);
@@ -206,8 +178,6 @@ namespace Bolsover.Bevel.Calculator
             var da2 = Degrees(Math.Atan(hf.Item2 / cd.Item2));
             return (da1, da2);
         }
-
-
         public static (double, double) CalculateAddendumAngle(IBevelGear pinion, IBevelGear gear)
         {
             return gear.GearType switch
@@ -217,7 +187,6 @@ namespace Bolsover.Bevel.Calculator
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
-
         private static (double, double) CalculateStandardAddendumAngle(IBevelGear pinion, IBevelGear gear)
         {
             var ha = CalculateAddendum(pinion, gear);
@@ -226,15 +195,11 @@ namespace Bolsover.Bevel.Calculator
             var aa2 = Degrees(Math.Atan(ha.Item2 / cd.Item2));
             return (aa1, aa2);
         }
-
         private static (double, double) CalculateGleasonAddendumAngle(IBevelGear pinion, IBevelGear gear)
         {
             var ha = CalculateDedendumAngle(pinion, gear);
-
             return (ha.Item2, ha.Item1);
         }
-
-
         public static (double, double) CalculateOuterConeAngle(IBevelGear pinion, IBevelGear gear)
         {
             var delta = CalculatePitchConeAngle(pinion, gear);
@@ -243,8 +208,6 @@ namespace Bolsover.Bevel.Calculator
             var oa2 = delta.Item2 + thetaa.Item2;
             return (oa1, oa2);
         }
-
-
         public static (double, double) CalculateRootConeAngle(IBevelGear pinion, IBevelGear gear)
         {
             var delta = CalculatePitchConeAngle(pinion, gear);
@@ -253,22 +216,17 @@ namespace Bolsover.Bevel.Calculator
             var ra2 = delta.Item2 - thetaf.Item2;
             return (ra1, ra2);
         }
-
-
         public static (double, double) CalculatePitchApexToCrown(IBevelGear pinion, IBevelGear gear)
         {
             var cd = CalculatePitchConeDistance(pinion, gear);
             var ha = CalculateAddendum(pinion, gear);
             var ca = CalculatePitchConeAngle(pinion, gear);
-
             var a2c1 = cd.Item1 * Math.Cos(Radians(ca.Item1)) -
                        ha.Item1 * Math.Sin(Radians(ca.Item1));
             var a2c2 = cd.Item2 * Math.Cos(Radians(ca.Item2)) -
                        ha.Item2 * Math.Sin(Radians(ca.Item2));
             return (a2c1, a2c2);
         }
-
-
         public static (double, double) CalculateAxialFaceWidth(IBevelGear pinion, IBevelGear gear)
         {
             var oa = CalculateOuterConeAngle(pinion, gear);
@@ -277,8 +235,6 @@ namespace Bolsover.Bevel.Calculator
             var afw2 = gear.FaceWidth * Math.Cos(Radians(oa.Item2)) / Math.Cos(Radians(aa.Item2));
             return (afw1, afw2);
         }
-
-
         public static (double, double) CalculateOutsideDiameter(IBevelGear pinion, IBevelGear gear)
         {
             var d = CalculatePitchDiameter(pinion, gear);
@@ -288,8 +244,6 @@ namespace Bolsover.Bevel.Calculator
             var od1 = d.Item1 + 2 * ha.Item1 * Math.Cos(Radians(pca.Item1));
             return (od1, od2);
         }
-
-
         public static (double, double) CalculateInnerOutsideDiameter(IBevelGear pinion, IBevelGear gear)
         {
             var od = CalculateOutsideDiameter(pinion, gear);
@@ -301,8 +255,6 @@ namespace Bolsover.Bevel.Calculator
                 Math.Cos(Radians(addendumAngle.Item2));
             return (iod1, iod2);
         }
-
-
         public static (double, double) CalculateTredgoldEquivalentBaseDiameter(IBevelGear pinion, IBevelGear gear)
         {
             var pitchDiameter = CalculateTredgoldEquivalentPitchDiameter(pinion, gear);
@@ -311,7 +263,6 @@ namespace Bolsover.Bevel.Calculator
             var db2 = pitchDiameter.Item2 * Math.Cos(Radians(alpha)); // Base Diameter of Pinion
             return (db1, db2);
         }
-
         public static (double, double) CalculateTredgoldEquivalentAddendumDiameter(IBevelGear pinion, IBevelGear gear)
         {
             var d = CalculateTredgoldEquivalentPitchDiameter(pinion, gear);
@@ -320,7 +271,6 @@ namespace Bolsover.Bevel.Calculator
             var ad2 = d.Item2 + (2 * ha.Item2);
             return (ad1, ad2);
         }
-
         public static (double, double) CalculateTredgoldEquivalentRootDiameter(IBevelGear pinion, IBevelGear gear)
         {
             var d = CalculateTredgoldEquivalentPitchDiameter(pinion, gear);
@@ -329,8 +279,6 @@ namespace Bolsover.Bevel.Calculator
             var rd2 = d.Item2 - (2 * hf.Item2);
             return (rd1, rd2);
         }
-
-
         public static (double, double) CalculateTredgoldEquivalentPitchDiameter(IBevelGear pinion, IBevelGear gear)
         {
             var d = CalculatePitchDiameter(pinion, gear);
@@ -339,18 +287,13 @@ namespace Bolsover.Bevel.Calculator
             var result2 = d.Item2 / Math.Cos(Radians(pitchConeAngle.Item2));
             return (result1, result2);
         }
-
-
         public static (double, double) CalculateTredgoldEquivalentToothCount(IBevelGear pinion, IBevelGear gear)
         {
             var equivalentPitchDiameter = CalculateTredgoldEquivalentPitchDiameter(pinion, gear);
-
             var ez1 = equivalentPitchDiameter.Item1 / pinion.Module;
             var ez2 = equivalentPitchDiameter.Item2 / gear.Module;
             return (ez1, ez2);
         }
-
-
         public static (double, double) CalculateRadialPressureAngle(IBevelGear pinion, IBevelGear gear)
         {
             var tanAlphaN1 = Math.Tan(Radians(pinion.PressureAngle));
@@ -359,7 +302,6 @@ namespace Bolsover.Bevel.Calculator
             var tanAlphaN2 = Math.Tan(Radians(gear.PressureAngle));
             var cosBetaM2 = Math.Cos(Radians(gear.SpiralAngle));
             var a2 = Degrees(Math.Atan(tanAlphaN2 / cosBetaM2));
-
             return (a1, a2);
         }
     }

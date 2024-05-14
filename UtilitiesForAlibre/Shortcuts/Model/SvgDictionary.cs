@@ -1,24 +1,19 @@
 using System.Collections.Generic;
-
 namespace Bolsover.Shortcuts.Model
 {
     public class SvgDictionary
     {
         public static Dictionary<string, string> SvgDictionaryData { get; private set;  }
-
         public static SvgDictionary Instance { get; } = new ();
-        
         private  SvgDictionary()
         {
             SvgDictionaryData = new Dictionary<string, string>();
             Initialise();
         }
-
         private void Add(string key, string value)
         {
             SvgDictionaryData.Add(key, value);
         }
-
         private void Initialise()
         {
             Add("PART_CONFIGURATION_COMMAND", "Common_Configuration.svg");

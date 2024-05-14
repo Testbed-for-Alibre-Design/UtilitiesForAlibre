@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace Bolsover.AlibreDataViewer
 {
     public class AlibreDataViewerAddOnCommandTerminateEventArgs : EventArgs
@@ -8,7 +7,6 @@ namespace Bolsover.AlibreDataViewer
         {
             AlibreDataViewerAddOnCommand = alibreDataViewerAddOnCommand;
         }
-
         public AlibreDataViewerAddOnCommand AlibreDataViewerAddOnCommand { get; }
     }
 }

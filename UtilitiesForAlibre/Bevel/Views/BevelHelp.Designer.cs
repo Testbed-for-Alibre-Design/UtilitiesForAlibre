@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-
 namespace Bolsover.Bevel.Views
 {
     partial class BevelHelp
@@ -8,7 +7,6 @@ namespace Bolsover.Bevel.Views
         /// Required designer variable.
         /// </summary>
         private IContainer components = null;
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -19,12 +17,9 @@ namespace Bolsover.Bevel.Views
             {
                 components.Dispose();
             }
-
             base.Dispose(disposing);
         }
-
         #region Windows Form Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -46,7 +41,6 @@ namespace Bolsover.Bevel.Views
             this.Text = "BevelHelp";
             this.ResumeLayout(false);
         }
-
         #endregion
     }
 }

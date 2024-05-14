@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace Bolsover.Bevel.Models
 {
     public interface IBevelGear
@@ -34,13 +33,10 @@ namespace Bolsover.Bevel.Models
         double EquivalentAddendumDiameter { get; set; }
         double BackConeDistance { get; set; }
         double BackConeAngle { get; set; }
-        
         double KFactor { get; set; }
         double CircularThicknessDegrees { get; set; }
         double InterToothDegrees { get; set; }
-
         BevelGearType GearType { get; set; }
-
         event EventHandler Updated;
     }
 }

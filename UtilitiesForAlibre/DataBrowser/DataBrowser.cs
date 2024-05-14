@@ -8,13 +8,11 @@ using System.Windows.Forms;
 using AlibreX;
 using Bolsover.DataBrowser.Materials;
 using BrightIdeasSoftware;
-
 namespace Bolsover.DataBrowser
 {
     public partial class DataBrowserForm : Form
     {
         #region privateProperties
-
         private AlibreFileSystem _editingRow;
         private bool _isCopyToAllSelected;
         private readonly ToolTip _copySelectedTooltip = new();
@@ -26,20 +24,14 @@ namespace Bolsover.DataBrowser
         private readonly PartNoConfig.PartNoConfig _partNoConfig = new();
         private Point _mouseDownLocation; //Reference point for moving part no control
         private static DataBrowserForm _instance;
-
         #endregion
-
-
         #region Constructor
-
         public static DataBrowserForm Instance()
         {
             _instance ??= new DataBrowserForm();
-
             _instance.Visible = true;
             return _instance;
         }
-
         private DataBrowserForm()
         {
             InitializeComponent();
@@ -56,11 +48,8 @@ namespace Bolsover.DataBrowser
                 args.Cancel = true;
             };
         }
-
         #endregion
-
         #region privateInitialisationMethods
-
         private void SetupTree()
         {
             // TreeListView require two delegates:
@@ -84,7 +73,6 @@ namespace Bolsover.DataBrowser
                     return new ArrayList();
                 }
             };
-
             var roots = new ArrayList();
             foreach (var di in DriveInfo.GetDrives())
             {
@@ -92,11 +80,9 @@ namespace Bolsover.DataBrowser
                 var alFileSystem = new AlibreFileSystem(new DirectoryInfo(di.Name));
                 roots.Add(alFileSystem);
             }
-
             treeListView.Roots = roots;
             treeListView.CellEditStarting += HandleCellEditStarting;
             treeListView.CellEditFinished += HandleCellEditFinished;
-
             // apply some style
             var font = treeListView.Font;
             var headerFont = new Font(font, FontStyle.Bold);
@@ -105,7 +91,6 @@ namespace Bolsover.DataBrowser
             style.SetForeColor(Color.Navy);
             treeListView.HeaderFormatStyle = style;
         }
-
         private void InitPartNoConfig()
         {
             _partNoConfig.MouseDown += PartNoConfigMouseDown;
@@ -114,8 +99,6 @@ namespace Bolsover.DataBrowser
             Controls.Add(_partNoConfig);
             _partNoConfig.Hide();
         }
-
-
         /*
          * Setup ToolTips
          */
@@ -132,7 +115,6 @@ namespace Bolsover.DataBrowser
             _partNoTooltip.SetToolTip(buttonPartNo,
                 "Opens the Part Numbering control.");
         }
-
         /// <summary>
         /// Helper method to cast object Types
         /// </summary>
@@ -143,8 +125,6 @@ namespace Bolsover.DataBrowser
         {
             return Convert.ChangeType(obj, castTo);
         }
-
-
         /*
          * Set up column AspectPutters and AspectGetters
          */
@@ -153,7 +133,6 @@ namespace Bolsover.DataBrowser
             ConfigureAspectGetters();
             ConfigureAspectPutters();
         }
-
         /*
          * Register custom editors for DateTime columns and the Material column.
          * All other columns use string types
@@ -167,7 +146,6 @@ namespace Bolsover.DataBrowser
                 c.Format = DateTimePickerFormat.Short;
                 return c;
             });
-
             // Register MaterialPicker for use exclusively with olvColumnAlibreMaterial
             ObjectListView.EditorRegistry.Register(typeof(string), (model, column, value) =>
             {
@@ -177,11 +155,8 @@ namespace Bolsover.DataBrowser
                 return mc;
             });
         }
-
         #endregion
-
         #region AspectPutters
-
         /// <summary>
         /// Configures the MaterialAspectPutter.
         /// This is a special case because the designProperty for Material is actually populated with the IADMaterial Material
@@ -194,17 +169,14 @@ namespace Bolsover.DataBrowser
             olvColumnAlibreMaterial.AspectPutter = (editingRow, value) =>
             {
                 if (value.GetType() != typeof(MaterialNode)) return;
-            
                 var designSession = AlibreConnector.RetrieveSessionForFile((AlibreFileSystem)editingRow);
                 var designProperties = designSession.DesignProperties;
                 designProperties.Material = ((MaterialNode)value).Guid;
                 ((AlibreFileSystem)editingRow).AlibreMaterialGuid = ((MaterialNode)value).Guid;
-
                 designSession.Close(true);
                 ((AlibreFileSystem)editingRow).AlibreMaterial = ((MaterialNode)value).NodeName;
             };
         }
-
         /*
          * Configures AspectPutter methods for individual columns with the exception of extended deign property for Materials
          * The extended deign property for material is overwritten whenever the user selects a Material design property.
@@ -241,8 +213,6 @@ namespace Bolsover.DataBrowser
             ConfigureColumnAspectPutter(olvColumnAlibreVendor, ADExtendedDesignProperty.AD_VENDOR, typeof(string));
             ConfigureColumnAspectPutter(olvColumnAlibreWebLink, ADExtendedDesignProperty.AD_WEBLINK, typeof(string));
         }
-
-
         /*
          * Configures AspectPutters based on the column, extendedDesignProperty and Type
          * OLVColumn column: The column to be configured
@@ -309,7 +279,6 @@ namespace Bolsover.DataBrowser
                     default:
                         throw new ArgumentOutOfRangeException(nameof(extendedDesignProperty), extendedDesignProperty, null);
                 }
-
                 if (type == typeof(DateTime))
                 {
                     value = ((DateTime)value).Date.ToShortDateString();
@@ -319,12 +288,9 @@ namespace Bolsover.DataBrowser
                 {
                     designProperties.ExtendedDesignProperty(extendedDesignProperty, Cast(value, type));
                 }
-
                 session.Close(true);
             };
         }
-
-
         /*
          * Configures the AspectPutter for the Modified column.
          *
@@ -335,15 +301,12 @@ namespace Bolsover.DataBrowser
             {
                 ((AlibreFileSystem)rowObject).AlibreModified = (DateTime)value;
                 var session = AlibreConnector.RetrieveSessionForFile((AlibreFileSystem)rowObject);
-
                 var designProperties = session.DesignProperties;
                 designProperties.ExtendedDesignProperty(ADExtendedDesignProperty.AD_MODIFIED,
                     ((DateTime)value).Date.ToShortDateString());
                 session.Close(true);
             };
         }
-
-
         /*
          * Configures the AspectPutter for the Part No column
          */
@@ -357,7 +320,6 @@ namespace Bolsover.DataBrowser
                     var session = AlibreConnector.RetrieveDrawingSessionForFile((AlibreFileSystem)rowObject);
                     var designProperties = session.Properties;
                     designProperties.Number = (string)value;
-
                     session.Close(true);
                 }
                 else
@@ -365,13 +327,10 @@ namespace Bolsover.DataBrowser
                     var session = AlibreConnector.RetrieveSessionForFile((AlibreFileSystem)rowObject);
                     var designProperties = session.DesignProperties;
                     designProperties.Number = (string)value;
-
                     session.Close(true);
                 }
             };
         }
-
-
         /*
          * Configures the AspectPutter for the Description column
          */
@@ -385,7 +344,6 @@ namespace Bolsover.DataBrowser
                     var session = AlibreConnector.RetrieveDrawingSessionForFile((AlibreFileSystem)rowObject);
                     var designProperties = session.Properties;
                     designProperties.Description = (string)value;
-
                     session.Close(true);
                 }
                 else
@@ -393,16 +351,12 @@ namespace Bolsover.DataBrowser
                     var session = AlibreConnector.RetrieveSessionForFile((AlibreFileSystem)rowObject);
                     var designProperties = session.DesignProperties;
                     designProperties.Description = (string)value;
-
                     session.Close(true);
                 }
             };
         }
-
         #endregion
-
         #region AspectGetters
-
         /// <summary>
         ///Configures all the AspectGetter methods for individual columns
         /// 
@@ -441,11 +395,8 @@ namespace Bolsover.DataBrowser
             olvColumnAlibreVendor.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreVendor;
             olvColumnAlibreWebLink.AspectGetter = rowObject => ((AlibreFileSystem)rowObject).AlibreWebLink;
         }
-
         #endregion
-
         #region EventHandlers
-
         /// <summary>
         /// Filters the table for files with extension starting with .AD_
         /// </summary>
@@ -463,7 +414,6 @@ namespace Bolsover.DataBrowser
                 treeListView.ModelFilter = new ModelFilter(rowObject => true);
             }
         }
-
         /// <summary>
         /// Sets the value of IsCopyToAllSelected bool.
         /// </summary>
@@ -473,7 +423,6 @@ namespace Bolsover.DataBrowser
         {
             _isCopyToAllSelected = ((CheckBox)sender).Checked;
         }
-
         /// <summary>
         /// Saves the layout of table columns to file.
         /// File is %AppData%\DataBrowser\table.settings
@@ -483,7 +432,6 @@ namespace Bolsover.DataBrowser
         private void buttonSaveState_Click(object sender, EventArgs e)
         {
             _treeListViewViewState = treeListView.SaveState();
-            
             var directorypath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) +
                                 "\\UtilitiesForAlibre";
             var filepath = directorypath + "\\table.settings";
@@ -492,10 +440,8 @@ namespace Bolsover.DataBrowser
             {
                 Directory.CreateDirectory(directorypath);
             }
-
             File.WriteAllBytes(filepath, _treeListViewViewState);
         }
-
         /// <summary>
         /// Restores the treeListViewViewState from that previously saved to disk
         /// </summary>
@@ -505,7 +451,6 @@ namespace Bolsover.DataBrowser
         {
             RestoreState();
         }
-
         /// <summary>
         /// Activates part no control
         /// </summary>
@@ -517,8 +462,6 @@ namespace Bolsover.DataBrowser
             _partNoConfig.Show();
             _partNoConfig.BringToFront();
         }
-
-
         /// <summary>
         /// Used for positioning of part no control
         /// </summary>
@@ -531,7 +474,6 @@ namespace Bolsover.DataBrowser
                 _mouseDownLocation = e.Location;
             }
         }
-
         /// <summary>
         /// Used for positioning of part no control
         /// </summary>
@@ -543,7 +485,6 @@ namespace Bolsover.DataBrowser
             _partNoConfig.Left = e.X + _partNoConfig.Left - _mouseDownLocation.X;
             _partNoConfig.Top = e.Y + _partNoConfig.Top - _mouseDownLocation.Y;
         }
-
         /// <summary>
         /// Retrieves the MaterialNode selected in the MaterialPicker.
         /// Obtains the IADDesignSession and IADDesignProperties for the row being edited.
@@ -558,7 +499,6 @@ namespace Bolsover.DataBrowser
             var materialNode = selectedItemEventArgs.SelectedChoice;
             olvColumnAlibreMaterial.AspectPutter.Invoke(_editingRow, materialNode);
         }
-
         /// <summary>
         /// Cell edit finished is used as a trigger to check if the cell contents should be copied to other cells in same column
         /// </summary>
@@ -569,8 +509,6 @@ namespace Bolsover.DataBrowser
             if (!_isCopyToAllSelected) return;
             CopyToSelected(sender, e);
         }
-
-
         /// <summary>
         /// Handle CellEditStarting
         /// Set editingRow field to correspond to the row being edited.
@@ -586,21 +524,18 @@ namespace Bolsover.DataBrowser
         {
             var rowObject = (AlibreFileSystem)e.RowObject;
             _editingRow = rowObject;
-
             // directory items are not editable
             if (rowObject.IsDirectory)
             {
                 e.Cancel = true;
                 return;
             }
-
             // only checked items should be editable
             if (!rowObject.IsChecked)
             {
                 e.Cancel = true;
                 return;
             }
-
             // prevent edits to anything other than sheet metal, part and assembly and drawing types
             if (!(rowObject.Info.Extension.ToUpper().StartsWith(".AD_PRT") |
                   rowObject.Info.Extension.ToUpper().StartsWith(".AD_ASM") |
@@ -610,7 +545,6 @@ namespace Bolsover.DataBrowser
                 e.Cancel = true;
                 return;
             }
-
             // drawing can only edit description and part no fields
             if (rowObject.Info.Extension.ToUpper().StartsWith(".AD_DRW"))
             {
@@ -620,8 +554,6 @@ namespace Bolsover.DataBrowser
                     return;
                 }
             }
-
-
             // olvColumnAlibreMaterial uses MaterialPicker other string based columns use default editor
             if (e.Column != olvColumnAlibreMaterial)
             {
@@ -636,10 +568,8 @@ namespace Bolsover.DataBrowser
                     e.Cancel = true;
                     return;
                 }
-
                 e.Control.Bounds = new Rectangle(e.CellBounds.X, e.CellBounds.Y, 250, 300);
             }
-
             // prevent editing locked files
             if (IsFileLocked(rowObject.AsFile))
             {
@@ -648,14 +578,10 @@ namespace Bolsover.DataBrowser
                 var title = "File Locked";
                 MessageBox.Show(message, title);
             }
-
             Debug.WriteLine(sender);
         }
-
         #endregion
-
         #region PrivateAndProtectedMethods
-
         /// <summary>
         /// Method to copy info from one cell to other cells in the same column where the row is checked.
         /// </summary>
@@ -668,7 +594,6 @@ namespace Bolsover.DataBrowser
             var task = new Task(() => copyAction(e, treeListView.CheckedObjects));
             task.Start();
         }
-
         /// <summary>
         /// Method used by CopyAction.
         /// Iterates through all the checked records and invokes the appropriate OLVColumn AspectPutter.
@@ -691,7 +616,6 @@ namespace Bolsover.DataBrowser
                     e.Column.AspectPutter.Invoke(rowObject, materialNode);
                     treeListView.Refresh();
                 }
-
                 else
                 {
                     if (!(rowObject.Info.Extension.ToUpper().StartsWith(".AD_PRT") |
@@ -703,11 +627,9 @@ namespace Bolsover.DataBrowser
                     treeListView.Refresh();
                 }
             }
-
             progressLabel.Text = "Copy complete ";
             UseWaitCursor = false;
         }
-
         /*
          * Utility to check if file is locked or open elsewhere
          */
@@ -726,12 +648,9 @@ namespace Bolsover.DataBrowser
                 //or does not exist (has already been processed)
                 return true;
             }
-
             //file is not locked
             return false;
         }
-
-
         /*
          * Restores the layout of table columns from those previously saved to file.
          * File is %AppData%\DataBrowser\table.settings
@@ -744,14 +663,12 @@ namespace Bolsover.DataBrowser
             {
                 Directory.CreateDirectory(directoryPath);
             }
-
             var filepath = directoryPath + "\\table.settings";
             var fileInfo = new FileInfo(filepath);
             if (!fileInfo.Exists) return;
             _treeListViewViewState = File.ReadAllBytes(filepath);
             treeListView.RestoreState(_treeListViewViewState);
         }
-
         #endregion
     }
 }

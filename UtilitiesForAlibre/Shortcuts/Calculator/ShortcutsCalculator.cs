@@ -11,14 +11,12 @@ using com.alibre.client;
 using com.alibre.executive.locale;
 using com.alibre.ui;
 using com.alibre.utils;
-
 namespace Bolsover.Shortcuts.Calculator
 {
     public class ShortcutsCalculator
     {
         private readonly KeyboardShortcutsMediator _mediator = new();
         private ADResourceManager _adResourceManager = ADResourceManager.Singleton;
-
         private List<AlibreShortcut> RetrieveUserShortcuts()
         {
             var userShortcutList = new List<AlibreShortcut>();
@@ -28,33 +26,26 @@ namespace Bolsover.Shortcuts.Calculator
                 // MessageBox.Show("No user profile found", "Error");
                 return userShortcutList;
             }
-
             var mapping = userProfile.Mapping;
-
             foreach (var mappingPair in mapping.Pairs)
             {
                 var first = mappingPair.toWrappedObject().first;
                 var second = mappingPair.toWrappedObject().second;
                 var child = first.ToString();
-
                 if (second is not Profile profile) continue;
                 DumpUserProfile(profile, child, userShortcutList);
             }
-
             return userShortcutList;
         }
-
         public Dictionary<string, AlibreShortcut> ShortcutsDictionary(List<AlibreShortcut> shortcuts)
         {
             return shortcuts.ToDictionary(sc => sc.Profile + "." + sc.Command);
         }
-
         public List<AlibreShortcut> RetrieveUserShortcutsByProfile(string profile)
         {
             var shortcuts = RetrieveUserShortcuts();
             return shortcuts.Where(sc => sc.Profile == profile).ToList();
         }
-
         public XElement ProfileToXml(Profile profile)
         {
             var xml = new XElement("Profile");
@@ -66,7 +57,6 @@ namespace Bolsover.Shortcuts.Calculator
                 var child = first.ToString();
                 child = child.Replace(" ", "_");
                 child = child.Replace("\u00d8", "?");
-
                 if (second is Profile profile1)
                 {
                     var childXml = new XElement(child);
@@ -80,10 +70,8 @@ namespace Bolsover.Shortcuts.Calculator
                     xml.Add(childXml);
                 }
             }
-
             return xml;
         }
-
         public List<AlibreShortcut> RetrieveStandardShortcutsByProfile(string profile)
         {
             var standardShortcuts = new List<AlibreShortcut>();
@@ -117,14 +105,11 @@ namespace Bolsover.Shortcuts.Calculator
                     DumpStandardProfile(GlobalParamStandardShortcuts(), "GlobalParam Editor", standardShortcuts);
                     break;
             }
-
             return standardShortcuts.Where(sc => !string.IsNullOrEmpty(sc.Hint)).ToList();
         }
-
         public List<AlibreShortcut> RetrieveStandardShortcuts()
         {
             var standardShortcuts = new List<AlibreShortcut>();
-
             DumpStandardProfile(PartStandardShortcuts(), "Design Part Browser", standardShortcuts);
             DumpStandardProfile(BomStandardShortcuts(), "BOM Editor", standardShortcuts);
             DumpStandardProfile(CommandCenterStandardShortcuts(), "Command Center Browser", standardShortcuts);
@@ -134,10 +119,8 @@ namespace Bolsover.Shortcuts.Calculator
             DumpStandardProfile(SheetMetalStandardShortcuts(), "Design Sheet Metal Browser", standardShortcuts);
             DumpStandardProfile(DrawingStandardShortcuts(), "Drawing Browser", standardShortcuts);
             DumpStandardProfile(GlobalParamStandardShortcuts(), "GlobalParam Editor", standardShortcuts);
-
             return standardShortcuts;
         }
-
         private void DumpStandardProfile(Profile profile, string profileName, List<AlibreShortcut> shortcuts)
         {
             var mapping = profile.Mapping;
@@ -152,7 +135,6 @@ namespace Bolsover.Shortcuts.Calculator
                 select new AlibreShortcut(profileName, (string)first, hint, (int)second, keyChar)
                     { SvgImage = _adResourceManager.GetSvgImage((string)first) });
         }
-
         private void DumpUserProfile(Profile profile, string parent, List<AlibreShortcut> shortcuts)
         {
             var mapping = profile.Mapping;
@@ -178,7 +160,6 @@ namespace Bolsover.Shortcuts.Calculator
                         shortcuts.Add(alibreShortcut);
                     }
                 }
-
                 if (mappingPair.toWrappedObject().second is Profile)
                 {
                     var p = (Profile)mappingPair.toWrappedObject().second;
@@ -186,7 +167,6 @@ namespace Bolsover.Shortcuts.Calculator
                 }
             }
         }
-
         private object ReadObjectFromFile(FileStream fileStream)
         {
             var formatter = new BinaryFormatter
@@ -197,10 +177,8 @@ namespace Bolsover.Shortcuts.Calculator
             surrogateSelector.AddSurrogate(typeof(Profile), new StreamingContext(StreamingContextStates.All), new ProfileSerializationSurrogate());
             formatter.SurrogateSelector = surrogateSelector;
             var obj = formatter.Deserialize(fileStream);
-
             return obj;
         }
-
         private string RoamingProfilePath()
         {
             var productRoamingDirectory = ClientContext.ProductRoamingDirectory;
@@ -208,68 +186,53 @@ namespace Bolsover.Shortcuts.Calculator
             var productRoamingProfilePath = Path.Combine(productRoamingDirectory.FullName + "\\default user", userProfileCurrentVersionFileName);
             return productRoamingProfilePath;
         }
-
         private Profile RetrieveUserProfile()
         {
             Profile profile = null;
-
             var profilePath = RoamingProfilePath();
-
             if (File.Exists(profilePath))
             {
                 profile = ReadProfileFromFile(profilePath);
             }
-
-
             return profile;
         }
-
         private Profile ReadProfileFromFile(string profilePath)
         {
             using var fileStream = new FileStream(profilePath, FileMode.Open, FileAccess.Read);
             return (Profile)ReadObjectFromFile(fileStream);
         }
-
         private Profile PartStandardShortcuts()
         {
             return _mediator.PartStandardShortcuts;
         }
-
         private Profile BomStandardShortcuts()
         {
             return _mediator.BOMStandardShortcuts;
         }
-
         private Profile CommandCenterStandardShortcuts()
         {
             return _mediator.CommandCenterStandardShortcuts;
         }
-
         private Profile AssemblyStandardShortcuts()
         {
             return _mediator.AssemblyStandardShortcuts;
         }
-
         private Profile AssemblyExplodedViewStandardShortcuts()
         {
             return _mediator.AssemblyExplodedViewStandardShortcuts;
         }
-
         private Profile DesignBooleanStandardShortcuts()
         {
             return _mediator.DesignBooleanStandardShortcuts;
         }
-
         private Profile SheetMetalStandardShortcuts()
         {
             return _mediator.SheetMetalStandardShortcuts;
         }
-
         private Profile DrawingStandardShortcuts()
         {
             return _mediator.DrawingStandardShortcuts;
         }
-
         private Profile GlobalParamStandardShortcuts()
         {
             return _mediator.GlobalParamStandardShortcuts;

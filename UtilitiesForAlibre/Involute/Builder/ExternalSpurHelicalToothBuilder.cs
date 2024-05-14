@@ -1,15 +1,11 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Bolsover.Involute.Model;
 using static Bolsover.Involute.Calculator.ToothPointCalculator;
-
-
 namespace Bolsover.Involute.Builder
 {
     public class ExternalSpurHelicalToothBuilder : IToothPointsBuilder
     {
         private Tooth _tooth;
-
         public Tooth Build(IGearDesignOutputParams gearDesignOutputParams)
         {
             _tooth = new()
@@ -35,25 +31,16 @@ namespace Bolsover.Involute.Builder
             _tooth.Points[15].Point = BuildPoint15(gearDesignOutputParams);
             _tooth.Points[16].Point = BuildPoint16(gearDesignOutputParams);
             _tooth.Points[17].Point = BuildPoint17(gearDesignOutputParams);
-
-
             return _tooth;
         }
-
-
         private static List<GearPoint> BuildRhsToothInvolute(IGearDesignOutputParams gearDesignOutputParams)
         {
             return RhsInvolute(gearDesignOutputParams);
         }
-
-
         private static List<GearPoint> BuildLhsToothInvolute(IGearDesignOutputParams gearDesignOutputParams)
         {
             return LhsInvolute(gearDesignOutputParams);
-            
-         
         }
-
         /// <summary>
         /// Simply returns a new GearPoint at x:0, y:0 as the gear centre point
         /// </summary>
@@ -63,7 +50,6 @@ namespace Bolsover.Involute.Builder
         {
             return new GearPoint(0, 0);
         }
-
         /// <summary>
         /// RHS Mid point between adjacent teeth on root diameter
         /// </summary>
@@ -73,9 +59,6 @@ namespace Bolsover.Involute.Builder
         {
             return RhsMidRoot(gearDesignOutputParams);
         }
-
-       
-
         /// <summary>
         /// RHS Start of root relief arc
         /// This point is at the intersection of the root relief arc and the involute
@@ -86,9 +69,6 @@ namespace Bolsover.Involute.Builder
         {
             return RhsStartRootRelief(gearDesignOutputParams);
         }
-
-        
-
         /// <summary>
         /// RHS Centre of root relief arc
         /// </summary>
@@ -96,10 +76,8 @@ namespace Bolsover.Involute.Builder
         /// <returns></returns>
         private static GearPoint BuildPoint3(IGearDesignOutputParams gearDesignOutputParams)
         {
-
             return RhsRootFilletCentre(gearDesignOutputParams);
         }
-
         /// <summary>
         /// RHS End of root relief arc
         /// </summary>
@@ -108,10 +86,7 @@ namespace Bolsover.Involute.Builder
         private static GearPoint BuildPoint4(IGearDesignOutputParams gearDesignOutputParams)
         {
             return GearPointRhsEndRootRelief(gearDesignOutputParams);
-
         }
-
-       
         /// <summary>
         /// RHS Start of involute
         /// </summary>
@@ -121,7 +96,6 @@ namespace Bolsover.Involute.Builder
         {
             return RhsStartInvolute(gearDesignOutputParams);
         }
-
         /// <summary>
         /// RHS Start of tip relief arc
         /// </summary>
@@ -131,7 +105,6 @@ namespace Bolsover.Involute.Builder
         {
             return RhsStartOfTipRelief(gearDesignOutputParams);
         }
-
         /// <summary>
         /// RHS Centre of tip relief arc
         /// </summary>
@@ -141,9 +114,6 @@ namespace Bolsover.Involute.Builder
         {
             return RhsCentreOfTipRelief(gearDesignOutputParams);
         }
-
-       
-
         /// <summary>
         /// RHS End of tip relief arc
         /// </summary>
@@ -153,9 +123,6 @@ namespace Bolsover.Involute.Builder
         {
             return RhsEndTipRelief(gearDesignOutputParams);
         }
-
-        
-
         /// <summary>
         /// Centre point on outside diameter
         /// </summary>
@@ -165,9 +132,6 @@ namespace Bolsover.Involute.Builder
         {
             return CentrePointOutsideDiameter(gearDesignOutputParams);
         }
-
-        
-
         /// <summary>
         /// LHS End of tip relief arc
         /// </summary>
@@ -177,9 +141,6 @@ namespace Bolsover.Involute.Builder
         {
             return LhsEndTipRelief(gearDesignOutputParams);
         }
-
-        
-
         /// <summary>
         /// LHS Centre of tip relief arc
         /// </summary>
@@ -189,9 +150,6 @@ namespace Bolsover.Involute.Builder
         {
             return LhsCentreTipRelief(gearDesignOutputParams);
         }
-
-      
-
         /// <summary>
         /// LHS Start of tip relief arc
         /// </summary>
@@ -201,7 +159,6 @@ namespace Bolsover.Involute.Builder
         {
             return LhsStartOfTipRelief(gearDesignOutputParams);
         }
-
         /// <summary>
         /// LHS Start of involute
         /// </summary>
@@ -211,7 +168,6 @@ namespace Bolsover.Involute.Builder
         {
             return LhsStartInvolute(gearDesignOutputParams);
         }
-
         /// <summary>
         /// LHS End of root relief arc
         /// </summary>
@@ -221,9 +177,6 @@ namespace Bolsover.Involute.Builder
         {
             return LhsEndRootRelief(gearDesignOutputParams);
         }
-
-        
-
         /// <summary>
         /// LHS Centre of root relief arc
         /// </summary>
@@ -233,9 +186,6 @@ namespace Bolsover.Involute.Builder
         {
             return LhsCentreRootRelief(gearDesignOutputParams);
         }
-
-        
-
         /// <summary>
         /// LHS start of root relief arc
         /// </summary>
@@ -245,9 +195,6 @@ namespace Bolsover.Involute.Builder
         {
             return LhsStartRootRelief(gearDesignOutputParams);
         }
-
-     
-
         /// <summary>
         /// LHS Mid point between adjacent teeth on root diameter
         /// </summary>
@@ -255,9 +202,7 @@ namespace Bolsover.Involute.Builder
         /// <returns></returns>
         private static GearPoint BuildPoint17(IGearDesignOutputParams gearDesignOutputParams)
         {
-            
             return LhsMidRoot(gearDesignOutputParams);
-      
         }
     }
 }

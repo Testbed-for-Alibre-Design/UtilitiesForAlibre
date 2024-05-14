@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using AlibreX;
-
 namespace Bolsover.DataBrowser.Materials
 {
     public class MaterialNode
@@ -9,26 +8,19 @@ namespace Bolsover.DataBrowser.Materials
         {
             NodeName = nodeName;
         }
-
         public string Guid { get; set; }
-
         public IADMaterial Material { get; set; }
         public string NodeName { get; set; }
-
         public bool CanExpand
         {
             get => ChList != null;
         }
-
         public ArrayList ChList { get; set; }
-
         public void AddChild(MaterialNode childNode)
         {
             ChList ??= new ArrayList();
-
             ChList.Add(childNode);
         }
-
         /*
          * Removes MaterialNode childNode from the ChList.
          */
@@ -36,7 +28,6 @@ namespace Bolsover.DataBrowser.Materials
         {
             var j = -1;
             if (ChList != null)
-
             {
                 for (var i = 0; i < ChList.Count; i++)
                 {
@@ -46,7 +37,6 @@ namespace Bolsover.DataBrowser.Materials
                     break;
                 }
             }
-
             if (j > -1)
             {
                 ChList.RemoveAt(j);

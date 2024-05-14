@@ -1,5 +1,4 @@
 ﻿using System.Windows.Forms;
-
 namespace Bolsover.Involute.View
 {
     public partial class InvoluteGearForm : Form

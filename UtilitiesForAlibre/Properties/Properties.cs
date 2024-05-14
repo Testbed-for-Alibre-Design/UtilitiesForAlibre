@@ -5,7 +5,6 @@ namespace UtilitiesForAlibre.Properties
         internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
         {
             private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
             public static Settings Default
             {
                 get
@@ -13,9 +12,6 @@ namespace UtilitiesForAlibre.Properties
                     return defaultInstance;
                 }
             }
-            
-          
-
             [global::System.Configuration.UserScopedSettingAttribute()]
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.Configuration.DefaultSettingValueAttribute("Red")]
@@ -30,7 +26,6 @@ namespace UtilitiesForAlibre.Properties
                     this["CtrlAltShiftColor"] = value;
                 }
             }
-            
             [global::System.Configuration.UserScopedSettingAttribute()]
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.Configuration.DefaultSettingValueAttribute("Gold")]
@@ -45,7 +40,6 @@ namespace UtilitiesForAlibre.Properties
                     this["CtrlShiftColor"] = value;
                 }
             }
-            
             [global::System.Configuration.UserScopedSettingAttribute()]
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.Configuration.DefaultSettingValueAttribute("Orange")]
@@ -60,7 +54,6 @@ namespace UtilitiesForAlibre.Properties
                     this["CtrlAltColor"] = value;
                 }
             }
-            
             [global::System.Configuration.UserScopedSettingAttribute()]
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.Configuration.DefaultSettingValueAttribute("Chartreuse")]
@@ -75,7 +68,6 @@ namespace UtilitiesForAlibre.Properties
                     this["AltShiftColor"] = value;
                 }
             }
-            
             [global::System.Configuration.UserScopedSettingAttribute()]
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.Configuration.DefaultSettingValueAttribute("CornflowerBlue")]
@@ -90,7 +82,6 @@ namespace UtilitiesForAlibre.Properties
                     this["CtrlColor"] = value;
                 }
             } 
-            
             [global::System.Configuration.UserScopedSettingAttribute()]
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.Configuration.DefaultSettingValueAttribute("MediumOrchid")]
@@ -105,7 +96,6 @@ namespace UtilitiesForAlibre.Properties
                     this["AltColor"] = value;
                 }
             }
-            
             [global::System.Configuration.UserScopedSettingAttribute()]
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.Configuration.DefaultSettingValueAttribute("Violet")]
@@ -120,7 +110,6 @@ namespace UtilitiesForAlibre.Properties
                     this["ShiftColor"] = value;
                 }
             }
-            
             [global::System.Configuration.UserScopedSettingAttribute()]
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.Configuration.DefaultSettingValueAttribute("Bisque")]
@@ -135,7 +124,6 @@ namespace UtilitiesForAlibre.Properties
                     this["NoModifierColor"] = value;
                 }
             }
-            
             [global::System.Configuration.UserScopedSettingAttribute()]
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.Configuration.DefaultSettingValueAttribute("Bisque")]
@@ -150,7 +138,6 @@ namespace UtilitiesForAlibre.Properties
                     this["ModifierKeyColor"] = value;
                 }
             }
-            
             [global::System.Configuration.UserScopedSettingAttribute()]
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.Configuration.DefaultSettingValueAttribute("Black")]
@@ -162,7 +149,6 @@ namespace UtilitiesForAlibre.Properties
                     this["TextColor"] = value;
                 }
             }
-        
             [global::System.Configuration.UserScopedSettingAttribute()]
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.Configuration.DefaultSettingValueAttribute("9")]
@@ -174,7 +160,6 @@ namespace UtilitiesForAlibre.Properties
                     this["KeyTextSize"] = value;
                 }
             }
-            
             [global::System.Configuration.UserScopedSettingAttribute()]
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.Configuration.DefaultSettingValueAttribute("0.6")]
@@ -186,7 +171,6 @@ namespace UtilitiesForAlibre.Properties
                     this["AlibreIcon"] = value;
                 }
             }
-            
             [global::System.Configuration.UserScopedSettingAttribute()]
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.Configuration.DefaultSettingValueAttribute("13")]

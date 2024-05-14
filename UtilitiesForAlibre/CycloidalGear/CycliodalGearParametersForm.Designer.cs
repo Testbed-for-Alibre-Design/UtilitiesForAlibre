@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-
 namespace Bolsover.CycloidalGear
 {
     partial class CycliodalGearParametersForm
@@ -8,7 +7,6 @@ namespace Bolsover.CycloidalGear
         /// Required designer variable.
         /// </summary>
         private IContainer components = null;
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -19,12 +17,9 @@ namespace Bolsover.CycloidalGear
             {
                 components.Dispose();
             }
-
             base.Dispose(disposing);
         }
-
         #region Windows Form Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -321,37 +316,26 @@ namespace Bolsover.CycloidalGear
             this.ResumeLayout(false);
             this.PerformLayout();
         }
-
         private System.Windows.Forms.TextBox planeTextBox;
-
         private System.Windows.Forms.PictureBox pictureBox1;
-
         private System.Windows.Forms.NumericUpDown moduleNumericUpDown;
         private System.Windows.Forms.NumericUpDown wheelToothCountUpDwn;
         private System.Windows.Forms.NumericUpDown pinionToothCountUpDown;
         private System.Windows.Forms.NumericUpDown wheelCenterHoleUpDown;
         private System.Windows.Forms.NumericUpDown pinionCenterHoleUpDown;
         private System.Windows.Forms.NumericUpDown customSlopUpDown;
-
         private System.Windows.Forms.Button buttonApply;
-
         private System.Windows.Forms.CheckBox drawWheelCheckBox;
         private System.Windows.Forms.CheckBox drawPinionCheckBox;
         private System.Windows.Forms.Label label7;
-
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox customSlopCheckBox;
-
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-
         private System.Windows.Forms.Label label2;
-
         private System.Windows.Forms.Label label1;
-
         #endregion
     }
 }

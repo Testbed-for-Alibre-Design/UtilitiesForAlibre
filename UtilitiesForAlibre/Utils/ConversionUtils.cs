@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace Bolsover.Utils
 {
     public static class ConversionUtils
@@ -14,7 +13,6 @@ namespace Bolsover.Utils
         {
             return angle * (Math.PI / 180.0);
         }
-
         /// <summary>
         /// Converts the given angle in Radians to Degrees
         /// Uses the formula Degrees = Radians * 180/Pi

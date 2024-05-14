@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace Bolsover.CycloidalGear
 {
     public class CycloidalGearAddOnCommandTerminateEventArgs : EventArgs
@@ -8,7 +7,6 @@ namespace Bolsover.CycloidalGear
         {
             CycloidalGearAddOnCommand = cycloidalGearAddOnCommand;
         }
-
         public CycloidalGearAddOnCommand CycloidalGearAddOnCommand { get; }
     }
 }

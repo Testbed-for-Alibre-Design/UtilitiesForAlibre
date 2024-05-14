@@ -5,7 +5,6 @@ using Bolsover.Bevel.Models;
 using Bolsover.Bevel.Presenters;
 using NUnit.Framework;
 using static Bolsover.Utils.ConversionUtils;
-
 namespace UnitTests
 {
     public class BevelGearCalculatorTests
@@ -19,18 +18,15 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 60;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculatePitchDiameter(pinion, gear).Item1, 0.00001);
         }
-
         [Test]
         public void CalculateStandardGearPitchDiameter()
         {
@@ -40,18 +36,15 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 120;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculatePitchDiameter(pinion,gear).Item2, 0.00001);
         }
-
         [Test]
         public void CalculateStandardPinionPitchConeAngle()
         {
@@ -61,19 +54,16 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 26.56505;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculatePitchConeAngle(pinion, gear).Item1,
                 0.00001);
         }
-
         [Test]
         public void CalculateStandardGearPitchConeAngle()
         {
@@ -83,18 +73,15 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 63.43495;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculatePitchConeAngle(pinion, gear).Item2, 0.00001);
         }
-
         [Test]
         public void CalculateGearConeDistance()
         {
@@ -104,18 +91,15 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 67.08204;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculatePitchConeDistance(pinion, gear).Item2, 0.00001);
         }
-        
         [Test]
         public void CalculatePinionConeDistance()
         {
@@ -126,7 +110,6 @@ namespace UnitTests
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
             pinion.GearType = BevelGearType.Standard;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
@@ -134,7 +117,6 @@ namespace UnitTests
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
             gear.GearType = BevelGearType.Standard;
-
             var expectedResult1 = 67.08204;
             var expectedResult2 = 67.08204;
             Assert.AreEqual(expectedResult1, BevelGearCalculator.CalculatePitchConeDistance(pinion, gear).Item1, 0.00001);
@@ -146,8 +128,6 @@ namespace UnitTests
             Assert.AreEqual(expectedResult3, BevelGearCalculator.CalculatePitchConeDistance(pinion, gear).Item1, 0.00001);
             Assert.AreEqual(expectedResult4, BevelGearCalculator.CalculatePitchConeDistance(pinion, gear).Item2, 0.00001);
         }
-
-        
         [Test]
         public void CalculateAddendum()
         {
@@ -158,7 +138,6 @@ namespace UnitTests
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
             pinion.GearType = BevelGearType.Standard;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
@@ -166,13 +145,10 @@ namespace UnitTests
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
             gear.GearType = BevelGearType.Standard;
-            
             var expectedResult1 = 3.0;
             var expectedResult2 = 3.0;
-            
             Assert.AreEqual(expectedResult1, BevelGearCalculator.CalculateAddendum(pinion, gear).Item1, 0.00001);
             Assert.AreEqual(expectedResult2, BevelGearCalculator.CalculateAddendum(pinion, gear).Item2, 0.00001);
-            
             pinion.GearType = BevelGearType.Gleason;
             gear.GearType = BevelGearType.Gleason;
             var expectedResult3 = 4.03500;
@@ -180,7 +156,6 @@ namespace UnitTests
             Assert.AreEqual(expectedResult3, BevelGearCalculator.CalculateAddendum(pinion, gear).Item1, 0.00001);
             Assert.AreEqual(expectedResult4, BevelGearCalculator.CalculateAddendum(pinion, gear).Item2, 0.00001);
         }
-        
         [Test]
         public void CalculateDedendum()
         {
@@ -191,7 +166,6 @@ namespace UnitTests
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
             pinion.GearType = BevelGearType.Standard;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
@@ -199,12 +173,10 @@ namespace UnitTests
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
             gear.GearType = BevelGearType.Standard;
-
             var expectedResult1 = 3.75;
             var expectedResult2 = 3.75;
             Assert.AreEqual(expectedResult1, BevelGearCalculator.CalculateDedendum(pinion, gear).Item1, 0.00001);
             Assert.AreEqual(expectedResult2, BevelGearCalculator.CalculateDedendum(pinion, gear).Item2, 0.00001);
-            
             pinion.GearType = BevelGearType.Gleason;
             gear.GearType = BevelGearType.Gleason;
             var expectedResult3 = 2.528999;
@@ -212,10 +184,6 @@ namespace UnitTests
             Assert.AreEqual(expectedResult3, BevelGearCalculator.CalculateDedendum(pinion, gear).Item1, 0.00001);
             Assert.AreEqual(expectedResult4, BevelGearCalculator.CalculateDedendum(pinion, gear).Item2, 0.00001);
         }
-
-
-       
-
         [Test]
         public void CalculateDedendumAngle()
         {
@@ -226,7 +194,6 @@ namespace UnitTests
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
             pinion.GearType = BevelGearType.Standard;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
@@ -234,12 +201,10 @@ namespace UnitTests
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
             gear.GearType = BevelGearType.Standard;
-
             var expectedResult1 = 3.19960;
             var expectedResult2 = 3.19960;
             Assert.AreEqual(expectedResult1, BevelGearCalculator.CalculateDedendumAngle(pinion, gear).Item1, 0.00001);
             Assert.AreEqual(expectedResult2, BevelGearCalculator.CalculateDedendumAngle(pinion, gear).Item2, 0.00001);
-            
             pinion.GearType = BevelGearType.Gleason;
             gear.GearType = BevelGearType.Gleason;
             var expectedResult3 = 2.15903;
@@ -247,7 +212,6 @@ namespace UnitTests
             Assert.AreEqual(expectedResult3, BevelGearCalculator.CalculateDedendumAngle(pinion, gear).Item1, 0.00001);
             Assert.AreEqual(expectedResult4, BevelGearCalculator.CalculateDedendumAngle(pinion, gear).Item2, 0.00001);
         }
-
         [Test]
         public void CalculateStandardGearDedendumAngle()
         {
@@ -257,21 +221,15 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 3.19960;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateDedendumAngle(pinion, gear).Item2, 0.00001);
         }
-
-       
-
-       
         [Test]
         public void CalculateStandardGearAddendumAngle()
         {
@@ -281,18 +239,15 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 2.56064;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateAddendumAngle(pinion, gear).Item2, 0.00001);
         }
-
         [Test]
         public void CalculateAddendumAngle()
         {
@@ -303,7 +258,6 @@ namespace UnitTests
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
             pinion.GearType = BevelGearType.Standard;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
@@ -311,12 +265,10 @@ namespace UnitTests
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
             gear.GearType = BevelGearType.Standard;
-
             var expectedResult1 = 2.560638;
             var expectedResult2 = 2.560638;
             Assert.AreEqual(expectedResult1, BevelGearCalculator.CalculateAddendumAngle(pinion, gear).Item1, 0.00001);
             Assert.AreEqual(expectedResult2, BevelGearCalculator.CalculateAddendumAngle(pinion, gear).Item2, 0.00001);
-            
             pinion.GearType = BevelGearType.Gleason;
             gear.GearType = BevelGearType.Gleason;
             var expectedResult3 = 3.92194;
@@ -324,7 +276,6 @@ namespace UnitTests
             Assert.AreEqual(expectedResult3, BevelGearCalculator.CalculateAddendumAngle(pinion, gear).Item1, 0.00001);
             Assert.AreEqual(expectedResult4, BevelGearCalculator.CalculateAddendumAngle(pinion, gear).Item2, 0.00001);
         }
-
         [Test]
         public void CalculateStandardGearOuterConeAngle()
         {
@@ -334,18 +285,15 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 65.99559;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateOuterConeAngle(pinion, gear).Item2, 0.00001);
         }
-
         [Test]
         public void CalculateStandardPinionOuterConeAngle()
         {
@@ -355,19 +303,16 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 29.12569;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateOuterConeAngle(pinion, gear).Item1,
                 0.00001);
         }
-
         [Test]
         public void CalculateStandardPinionRootConeAngle()
         {
@@ -377,18 +322,15 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 23.36545;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateRootConeAngle(pinion, gear).Item1, 0.00001);
         }
-
         [Test]
         public void CalculateStandardGearRootConeAngle()
         {
@@ -398,19 +340,15 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 60.23535;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateRootConeAngle(pinion, gear).Item2, 0.00001);
         }
-
-      
         [Test]
         public void CalculateStandardPinionPitchApexToCrown()
         {
@@ -420,19 +358,16 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 58.6584;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculatePitchApexToCrown(pinion, gear).Item1,
                 0.0001);
         }
-
         [Test]
         public void CalculateStandardGearPitchApexToCrown()
         {
@@ -442,18 +377,15 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 27.3167;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculatePitchApexToCrown(pinion, gear).Item2, 0.0001);
         }
-
         [Test]
         public void CalculateStandardPinionAxialFaceWidth()
         {
@@ -463,18 +395,15 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 19.2374;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateAxialFaceWidth(pinion, gear).Item1, 0.0001);
         }
-
         [Test]
         public void CalculateStandardGearAxialFaceWidth()
         {
@@ -484,20 +413,15 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 8.9587;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateAxialFaceWidth(pinion, gear).Item2, 0.0001);
         }
-
-      
-
         [Test]
         public void CalculateOutsideDiameter()
         {
@@ -508,7 +432,6 @@ namespace UnitTests
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
             pinion.GearType = BevelGearType.Standard;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
@@ -516,12 +439,10 @@ namespace UnitTests
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
             gear.GearType = BevelGearType.Standard;
-
             var expectedResult1 =  65.36656;
             var expectedResult2 = 122.6833;
             Assert.AreEqual(expectedResult1, BevelGearCalculator.CalculateOutsideDiameter(pinion, gear).Item1, 0.0001);
             Assert.AreEqual(expectedResult2, BevelGearCalculator.CalculateOutsideDiameter(pinion, gear).Item2, 0.0001);
-            
             pinion.GearType = BevelGearType.Gleason;
             gear.GearType = BevelGearType.Gleason;
             var expectedResult3 = 67.21803;
@@ -529,7 +450,6 @@ namespace UnitTests
             Assert.AreEqual(expectedResult3, BevelGearCalculator.CalculateOutsideDiameter(pinion, gear).Item1, 0.0001);
             Assert.AreEqual(expectedResult4, BevelGearCalculator.CalculateOutsideDiameter(pinion, gear).Item2, 0.0001);
         }
-
         [Test]
         public void CalculateStandardPinionOutsideDiameter()
         {
@@ -539,20 +459,16 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 65.3666;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateOutsideDiameter(pinion, gear).Item1,
                 0.0001);
         }
-
-
         [Test]
         public void CalculateStandardPinionInnerOutsideDiameter()
         {
@@ -562,19 +478,16 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 43.9292;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateInnerOutsideDiameter(pinion, gear).Item1,
                 0.0001);
         }
-        
         // [Test]
         // public void CalculateStandardPinionBackConeDistance()
         // {
@@ -596,7 +509,6 @@ namespace UnitTests
         //     Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateStandardBackConeDistance(pinion, gear).Item1,
         //         0.0001);
         // }
-        
         // [Test]
         // public void CalculateStandardGearBackConeDistance()
         // {
@@ -618,7 +530,6 @@ namespace UnitTests
         //     Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateStandardBackConeDistance(pinion, gear).Item2,
         //         0.0001);
         // }
-
         [Test]
         public void CalculateStandardGearInnerOutsideDiameter()
         {
@@ -628,20 +539,16 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 82.4485;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateInnerOutsideDiameter(pinion, gear).Item2,
                 0.0001);
         }
-
-      
         [Test]
         public void CalculateTredgoldPinionEquivalentPitchDiameter()
         {
@@ -651,19 +558,16 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 67.082;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateTredgoldEquivalentPitchDiameter(pinion, gear).Item1,
                 0.0001);
         }
-
         [Test]
         public void CalculateTredgoldGearEquivalentPitchDiameter()
         {
@@ -673,19 +577,16 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 268.3281;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateTredgoldEquivalentPitchDiameter(pinion, gear).Item2,
                 0.0001);
         }
-
         [Test]
         public void CalculateTredgoldPinionEquivalentToothCount()
         {
@@ -695,19 +596,16 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
             gear.PressureAngle = 20;
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
-
             var expectedResult = 22.3606;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateTredgoldEquivalentToothCount(pinion, gear).Item1,
                 0.0001);
         }
-
         [Test]
         public void CalculateTredgoldGearEquivalentToothCount()
         {
@@ -717,7 +615,6 @@ namespace UnitTests
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear
             {
                 ShaftAngle = 90,
@@ -726,13 +623,10 @@ namespace UnitTests
                 NumberOfTeeth = 40,
                 FaceWidth = 22
             };
-
             var expectedResult = 89.4427;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateTredgoldEquivalentToothCount(pinion, gear).Item2,
                 0.0001);
         }
-
-      
         [Test]
         public void CalculatePinionRadialPressureAngle()
         {
@@ -743,7 +637,6 @@ namespace UnitTests
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
             pinion.SpiralAngle = 35;
-
             BevelGear gear = new BevelGear
             {
                 ShaftAngle = 90,
@@ -753,11 +646,9 @@ namespace UnitTests
                 FaceWidth = 22,
                 SpiralAngle = 35
             };
-
             var expectedResult = 23.95680;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateRadialPressureAngle(pinion, gear).Item1, 0.00001);
         }
-
         // [Test]
         // public void CalculateStandardPinionBackConeAngle()
         // {
@@ -766,18 +657,15 @@ namespace UnitTests
         //     var result = Degrees(Math.Atan(o / a));
         //     Assert.AreEqual(70.8973, result, 0.00001);
         // }
-        
         [Test]
         public void CalculateStandardPinionBackConeAngle()
         {
-            
             BevelGear pinion = new BevelGear();
             pinion.ShaftAngle = 90;
             pinion.Module = 3;
             pinion.PressureAngle = 20;
             pinion.NumberOfTeeth = 20;
             pinion.FaceWidth = 22;
-
             BevelGear gear = new BevelGear
             {
                 ShaftAngle = 90,
@@ -786,12 +674,9 @@ namespace UnitTests
                 NumberOfTeeth = 40,
                 FaceWidth = 22
             };
-
             var expectedResult = 63.43494;
             Assert.AreEqual(expectedResult, BevelGearCalculator.CalculateBackConeAngle(pinion, gear).Item1, 0.00001);
         }
-
-
         [Test]
         public void CalculateCircularThickness()
         {
@@ -802,7 +687,6 @@ namespace UnitTests
             pinion.NumberOfTeeth = 40;
             pinion.FaceWidth = 22;
             pinion.GearType = BevelGearType.Gleason;
-
             BevelGear gear = new BevelGear();
             gear.ShaftAngle = 90;
             gear.Module = 3;
@@ -810,7 +694,6 @@ namespace UnitTests
             gear.NumberOfTeeth = 40;
             gear.FaceWidth = 22;
             gear.GearType = BevelGearType.Gleason;
-
             var expectedResult1 = 4.49847807;
             var expectedResult2 = 4.926299;
             Assert.AreEqual(expectedResult1, BevelGearCalculator.CalculateCircularThickness(pinion, gear).Item1, 0.0001);

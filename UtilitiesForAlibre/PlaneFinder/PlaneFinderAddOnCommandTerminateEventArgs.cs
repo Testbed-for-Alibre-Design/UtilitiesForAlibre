@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace Bolsover.PlaneFinder
 {
     public class PlaneFinderAddOnCommandTerminateEventArgs : EventArgs
@@ -8,7 +7,6 @@ namespace Bolsover.PlaneFinder
         {
             PlaneFinderAddOnCommand = planeFinderAddOnCommand;
         }
-
         public PlaneFinderAddOnCommand PlaneFinderAddOnCommand { get; }
     }
 }

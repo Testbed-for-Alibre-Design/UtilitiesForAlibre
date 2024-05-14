@@ -1,6 +1,5 @@
 ﻿using AlibreX;
 using Bolsover.Involute.Model;
-
 namespace Bolsover.Involute.Builder
 {
     public abstract class ExternalHelicalGearBuilder : AlibreToothBuilder
@@ -16,12 +15,10 @@ namespace Bolsover.Involute.Builder
             figures.Item(0).Delete();
             // the default Alibre units are cm. Scale everything by 0.1 for correct mm dimensions
             const double scale = 0.1;
-
             for (var i = 0; i < tooth.Points.Count; i++)
             {
                 AddScaledPoint(sketch, tooth.Points[i].Point, scale);
             }
-
             AddScaledCircle(sketch, tooth.Points[0].Point, gear.RootCircleDiameter, scale,
                 true);
             AddScaledCircle(sketch, tooth.Points[0].Point, gear.BaseCircleDiameter, scale,
@@ -33,17 +30,14 @@ namespace Bolsover.Involute.Builder
             AddScaledLine(sketch, tooth.Points[0].Point, tooth.Points[1].Point, scale);
             AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[0].Point, tooth.Points[1].Point, tooth.Points[2].Point, scale);
             AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[3].Point, tooth.Points[4].Point, tooth.Points[2].Point, scale);
-
             AddScaledBsplineByInterpolation(sketch, tooth.RhsInvolute, scale);
             AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[7].Point, tooth.Points[6].Point, tooth.Points[8].Point, scale);
             AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[0].Point, tooth.Points[8].Point, tooth.Points[10].Point, scale);
             AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[11].Point, tooth.Points[10].Point, tooth.Points[12].Point, scale);
             AddScaledBsplineByInterpolation(sketch, tooth.LhsInvolute, scale);
-
             AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[15].Point, tooth.Points[16].Point, tooth.Points[14].Point, scale);
             AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[0].Point, tooth.Points[16].Point, tooth.Points[17].Point, scale);
             AddScaledLine(sketch, tooth.Points[0].Point, tooth.Points[17].Point, scale);
-
             if (gear.BaseCircleDiameter > gear.RootCircleDiameter + gear.RootFilletDiameter)
             {
                 AddScaledLine(sketch, tooth.Points[13].Point, tooth.Points[14].Point, scale);

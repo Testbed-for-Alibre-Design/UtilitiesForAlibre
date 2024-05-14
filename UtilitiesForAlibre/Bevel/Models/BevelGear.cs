@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
-
 namespace Bolsover.Bevel.Models
 {
     public class BevelGear : IBevelGear, INotifyPropertyChanged
@@ -42,7 +41,6 @@ namespace Bolsover.Bevel.Models
         private double _kFactor;
         private double _circularThicknessDegrees;
         private double _interToothDegrees;
-
         public override string ToString()
         {
             var stringBuilder = new StringBuilder();
@@ -72,11 +70,8 @@ namespace Bolsover.Bevel.Models
             stringBuilder.AppendLine("Equivalent Base Diameter ".PadRight(25) + _equivalentBaseDiameter);
             stringBuilder.AppendLine("Equivalent Root Diameter ".PadRight(25) + _equivalentRootDiameter);
             stringBuilder.AppendLine("Equivalent Addendum Diameter ".PadRight(25) + _equivalentAddendumDiameter);
-            
-            
             return stringBuilder.ToString();
         }
-
         public double Module
         {
             get => _module;
@@ -86,8 +81,6 @@ namespace Bolsover.Bevel.Models
                 OnUpdated();
             }
         }
-
-
         public string StringValue
         {
             get => _stringValue;
@@ -97,7 +90,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double EquivalentPitchDiameter
         {
             get => _equivalentPitchDiameter;
@@ -107,7 +99,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double EquivalentBaseDiameter
         {
             get => _equivalentBaseDiameter;
@@ -117,7 +108,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double EquivalentRootDiameter
         {
             get => _equivalentRootDiameter;
@@ -127,7 +117,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double EquivalentAddendumDiameter
         {
             get => _equivalentAddendumDiameter;
@@ -137,7 +126,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double BackConeDistance
         {
             get => _backConeDistance;
@@ -147,7 +135,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double BackConeAngle
         {
             get => _backConeAngle;
@@ -157,7 +144,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double KFactor  {
             get => _kFactor;
             set
@@ -166,7 +152,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double CircularThicknessDegrees { 
             get => _circularThicknessDegrees;
             set
@@ -175,7 +160,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double InterToothDegrees { 
             get => _interToothDegrees;
             set
@@ -184,7 +168,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public BevelGearType GearType
         {
             get => _gearType;
@@ -194,7 +177,6 @@ namespace Bolsover.Bevel.Models
                 OnUpdated();
             }
         }
-
         public double ShaftAngle
         {
             get => _shaftAngle;
@@ -204,8 +186,6 @@ namespace Bolsover.Bevel.Models
                 OnUpdated();
             }
         }
-
-
         public double PressureAngle
         {
             get => _pressureAngle;
@@ -215,7 +195,6 @@ namespace Bolsover.Bevel.Models
                 OnUpdated();
             }
         }
-
         public double NumberOfTeeth
         {
             get => _numberOfTeeth;
@@ -225,7 +204,6 @@ namespace Bolsover.Bevel.Models
                 OnUpdated();
             }
         }
-
         public double PitchDiameter
         {
             get => _pitchDiameter;
@@ -235,7 +213,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double BaseDiameter {
             get => _baseDiameter;
             set
@@ -252,7 +229,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double RadialPressureAngle
         {
             get => _radialPressureAngle;
@@ -262,7 +238,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double PitchConeAngle
         {
             get => _pitchConeAngle;
@@ -272,7 +247,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double ConeDistance
         {
             get => _coneDistance;
@@ -282,7 +256,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double FaceWidth
         {
             get => _faceWidth;
@@ -292,7 +265,6 @@ namespace Bolsover.Bevel.Models
                 OnUpdated();
             }
         }
-
         public double Addendum
         {
             get => _addendum;
@@ -302,7 +274,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double Dedendum
         {
             get => _dedendum;
@@ -312,7 +283,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double DedendumAngle
         {
             get => _dedendumAngle;
@@ -322,7 +292,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double AddendumAngle
         {
             get => _addendumAngle;
@@ -332,7 +301,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double OuterConeAngle
         {
             get => _outerConeAngle;
@@ -342,7 +310,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double RootConeAngle
         {
             get => _rootConeAngle;
@@ -352,7 +319,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double OutsideDiameter
         {
             get => _outsideDiameter;
@@ -362,7 +328,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double PitchApexToCrown
         {
             get => _pitchApexToCrown;
@@ -372,7 +337,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double AxialFaceWidth
         {
             get => _axialFaceWidth;
@@ -382,7 +346,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public double InnerOutsideDiameter
         {
             get => _innerOutsideDiameter;
@@ -392,7 +355,6 @@ namespace Bolsover.Bevel.Models
                 OnPropertyChanged();
             }
         }
-
         public string Hand
         {
             get => _hand;
@@ -402,7 +364,6 @@ namespace Bolsover.Bevel.Models
                 OnUpdated();
             }
         }
-
         public double SpiralAngle
         {
             get => _spiralAngle;
@@ -412,22 +373,16 @@ namespace Bolsover.Bevel.Models
                 OnUpdated();
             }
         }
-
         public event EventHandler Updated;
-
         private void OnUpdated()
         {
             Updated?.Invoke(this, EventArgs.Empty);
         }
-
-
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
         protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value)) return false;

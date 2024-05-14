@@ -2,15 +2,12 @@
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using AlibreX;
-
 namespace Bolsover.DataBrowser
 {
     public class AlibreConnector
     {
         private static IADRoot _root;
         // private static AlibreConnector instance = null;
-
-
         /// <summary>
         /// Static constructor; initialises the IADRoot.
         /// </summary>
@@ -18,8 +15,6 @@ namespace Bolsover.DataBrowser
         {
             _root = AlibreAddOnAssembly.AlibreAddOn.GetRoot();
         }
-
-
         /// <summary>
         /// Terminates the root connection to Alibre - called when the application quits
         /// </summary>
@@ -27,12 +22,10 @@ namespace Bolsover.DataBrowser
         {
             _root.TerminateAll();
         }
-
         public static IADRoot GetRoot()
         {
             return _root;
         }
-
         /// <summary>
         /// Returns the collection of IADMaterialLibraries
         /// </summary>
@@ -41,7 +34,6 @@ namespace Bolsover.DataBrowser
         {
             return _root.MaterialLibraries;
         }
-
         /// <summary>
         /// Returns an IADDesignSession by opening the file associated with the AlibreFileSystem property
         /// </summary>
@@ -61,11 +53,8 @@ namespace Bolsover.DataBrowser
                 MessageBox.Show("Error opening file " + alibreFileSystem.FullName, "Error");
                 return null;
             }
-
             return session;
         }
-
-
         /// <summary>
         /// Returns an IADDrawingSession by opening the file associated with the AlibreFileSystem property
         /// </summary>
@@ -85,7 +74,6 @@ namespace Bolsover.DataBrowser
                 MessageBox.Show("Error opening file " + alibreFileSystem.FullName, "Error");
                 return null;
             }
-
             return session;
         }
     }

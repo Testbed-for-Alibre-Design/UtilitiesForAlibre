@@ -1,5 +1,4 @@
 using System.ComponentModel;
-
 namespace Bolsover.Shortcuts.View
 {
     partial class ColorPreferences
@@ -8,7 +7,6 @@ namespace Bolsover.Shortcuts.View
         /// Required designer variable.
         /// </summary>
         private IContainer components = null;
-
         /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
@@ -19,12 +17,9 @@ namespace Bolsover.Shortcuts.View
             {
                 components.Dispose();
             }
-
             base.Dispose(disposing);
         }
-
         #region Component Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -463,23 +458,18 @@ namespace Bolsover.Shortcuts.View
             ((System.ComponentModel.ISupportInitialize) (this.hintTextUpDown)).EndInit();
             this.ResumeLayout(false);
         }
-
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.NumericUpDown hintTextUpDown;
-
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button textColorButton;
         private System.Windows.Forms.NumericUpDown textSizeUpDown;
         private System.Windows.Forms.NumericUpDown iconScaleUpDown;
-
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button ResetDefaultsButton;
-
         private System.Windows.Forms.Button ModifierKeyButton;
         private System.Windows.Forms.Label label9;
-
         private System.Windows.Forms.Button ShiftButton;
         private System.Windows.Forms.Button NoModifierButton;
         private System.Windows.Forms.Label label2;
@@ -489,19 +479,15 @@ namespace Bolsover.Shortcuts.View
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-
         private System.Windows.Forms.Button CtrlAltButton;
         private System.Windows.Forms.Button CtrlShiftButton;
         private System.Windows.Forms.Button AltShiftButton;
         private System.Windows.Forms.Button CtrlButton;
         private System.Windows.Forms.Button AltButton;
-
         private System.Windows.Forms.ColorDialog colorDialog;
-
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button CtrlAltShiftButton;
-
         #endregion
     }
 }

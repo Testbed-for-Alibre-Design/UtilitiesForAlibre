@@ -10,13 +10,11 @@ using Bolsover.Involute.View;
 using Bolsover.PlaneFinder;
 using Bolsover.Shortcuts.View;
 using Shortcuts.Shortcuts.View;
-
 namespace Bolsover
 {
     public class UtilitiesForAlibre : IAlibreAddOn
     {
         private const int MenuIdRoot = 401;
-
         private const int SubmenuIdDataBrowser = 505;
         private const int MenuIdGear = 506;
         private const int MenuIdUtils = 601;
@@ -35,19 +33,15 @@ namespace Bolsover
         private int[] _menuIdsRoot;
         private int[] _menuIdsHelp;
         private int[] _menuIdsGear;
-
         private readonly IADRoot _alibreRoot;
         private IntPtr _parentWinHandle;
-
         public UtilitiesForAlibre(IADRoot alibreRoot, IntPtr parentWinHandle)
         {
             _alibreRoot = alibreRoot;
             _parentWinHandle = parentWinHandle;
             BuildMenuTree();
         }
-
         #region Menus
-
         /// <summary>
         /// Returns the menu ID of the add-on root menu item
         /// </summary>
@@ -55,7 +49,6 @@ namespace Bolsover
         {
             get => MenuIdRoot;
         }
-
         /// <summary>
         /// Builds the menu tree
         /// </summary>
@@ -66,7 +59,6 @@ namespace Bolsover
                 SubmenuIdShortcutsReport,
                 SubmenuIdShortcutsKeyboard
             };
-
             _menuIdsUtils = new[]
             {
                 SubMenuIdShortcuts,
@@ -84,7 +76,6 @@ namespace Bolsover
             {
                 SubmenuIdHelpAbout
             };
-
             _menuIdsGear = new[]
             {
                 SubmenuIdGearCycloidal,
@@ -92,7 +83,6 @@ namespace Bolsover
                 SubmenuIdGearBevel
             };
         }
-
         /// <summary>
         /// Description("Returns Whether the given Menu ID has any sub menus")
         /// </summary>
@@ -110,7 +100,6 @@ namespace Bolsover
                 _ => false
             };
         }
-
         /// <summary>
         /// Returns the ID's of sub menu items under a popup menu item; the menu ID of a 'leaf' menu becomes its command ID
         /// </summary>
@@ -128,7 +117,6 @@ namespace Bolsover
                 _ => null
             };
         }
-
         /// <summary>
         /// Returns the display name of a menu item; a menu item with text of a single dash (“-“) is a separator
         /// </summary>
@@ -155,7 +143,6 @@ namespace Bolsover
                 _ => ""
             };
         }
-
         /// <summary>
         /// Returns True if input menu item has sub menus // seems odd given name of method
         /// </summary>
@@ -165,7 +152,6 @@ namespace Bolsover
         {
             return false;
         }
-
         /// <summary>
         /// Returns property bits providing information about the state of a menu item
         /// ADDON_MENU_ENABLED = 1,
@@ -179,7 +165,6 @@ namespace Bolsover
         public ADDONMenuStates MenuItemState(int menuId, string sessionIdentifier)
         {
             var session = _alibreRoot.Sessions.Item(sessionIdentifier);
-
             switch (session)
             {
                 case IADDrawingSession:
@@ -199,9 +184,7 @@ namespace Bolsover
                         case SubmenuIdShortcutsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubMenuIdShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
-
                     break;
-
                 case IADAssemblySession:
                     switch (menuId)
                     {
@@ -219,7 +202,6 @@ namespace Bolsover
                         case SubmenuIdShortcutsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubMenuIdShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
-
                     break;
                 case IADPartSession:
                     switch (menuId)
@@ -238,13 +220,10 @@ namespace Bolsover
                         case SubmenuIdShortcutsKeyboard: return ADDONMenuStates.ADDON_MENU_ENABLED;
                         case SubMenuIdShortcuts: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
-
                     break;
             }
-
             return ADDONMenuStates.ADDON_MENU_GRAYED;
         }
-
         /// <summary>
         /// Returns a tool tip string if input menu ID is that of a 'leaf' menu item
         /// </summary>
@@ -270,7 +249,6 @@ namespace Bolsover
                 _ => ""
             };
         }
-
         /// <summary>
         /// Returns the icon name (with extension) for a menu item; the icon will be searched under the folder where the add-on .adc file is present
         /// </summary>
@@ -290,10 +268,8 @@ namespace Bolsover
             //     case SUBMENU_ID_UTILS_PLANE_FINDER: return "";
             //     case SUBMENU_ID_UTILS_DATA_VIEWER: return "";
             // }
-
             return string.Empty;
         }
-
         /// <summary>
         /// Returns True if AddOn has updated Persistent Data
         /// </summary>
@@ -303,7 +279,6 @@ namespace Bolsover
         {
             return false;
         }
-
         /// <summary>
         /// Invokes the add-on command identified by menu ID; returning the add-on command interface is optional
         /// </summary>
@@ -313,7 +288,6 @@ namespace Bolsover
         public IAlibreAddOnCommand InvokeCommand(int menuId, string sessionIdentifier)
         {
             var session = _alibreRoot.Sessions.Item(sessionIdentifier);
-
             return menuId switch
             {
                 SubmenuIdDataBrowser => DoDataBrowser(),
@@ -328,13 +302,9 @@ namespace Bolsover
                 _ => null
             };
         }
-
         #endregion
-
         #region Shortcuts
-
         private KeyboardForm _keyboardForm;
-
         private IAlibreAddOnCommand DoKeyboard()
         {
             if (_keyboardForm == null)
@@ -348,13 +318,9 @@ namespace Bolsover
                 _keyboardForm.Visible = true;
                 _keyboardForm.TopMost = true;
             }
-
             return null;
         }
-
-
         private KeyboardShortcutForm _keyboardShortcutForm;
-
         private IAlibreAddOnCommand DoShortcuts()
         {
             if (_keyboardShortcutForm == null)
@@ -368,19 +334,14 @@ namespace Bolsover
                 _keyboardShortcutForm.Visible = true;
                 _keyboardShortcutForm.TopMost = true;
             }
-
             return null;
         }
-
         #endregion
-
         #region DataViewer
-
         /// <summary>
         /// A dictionary to keep track of currently open AlibreDataViewerAddOnCommand object.
         /// </summary>
         private readonly Dictionary<string, AlibreDataViewerAddOnCommand> _dataViewerAddOnCommands = new();
-
         /// <summary>
         /// Toggles the viewer on/off
         /// </summary>
@@ -408,10 +369,8 @@ namespace Bolsover
                 alibreDataViewerAddOnCommand.Terminate += AlibreDataViewerAddOnCommandOnTerminate;
                 _dataViewerAddOnCommands.Add(session.Identifier, alibreDataViewerAddOnCommand);
             }
-
             return alibreDataViewerAddOnCommand;
         }
-
         private void AlibreDataViewerAddOnCommandOnTerminate(object sender,
             AlibreDataViewerAddOnCommandTerminateEventArgs e)
         {
@@ -421,16 +380,12 @@ namespace Bolsover
                 _dataViewerAddOnCommands.Remove(e.AlibreDataViewerAddOnCommand.Session.Identifier);
             }
         }
-
         #endregion
-
         #region PlaneFinder
-
         /// <summary>
         /// A dictionary to keep track of currently open PlaneFinderAddOnCommand object.
         /// </summary>
         private readonly Dictionary<string, PlaneFinderAddOnCommand> _planeFinderAddOnCommands = new();
-
         private IAlibreAddOnCommand DoPlaneFinder(IADSession session)
         {
             PlaneFinderAddOnCommand planeFinderAddOnCommand;
@@ -454,10 +409,8 @@ namespace Bolsover
                 planeFinderAddOnCommand.Terminate += PlaneFinderAddOnCommandOnTerminate;
                 _planeFinderAddOnCommands.Add(session.Identifier, planeFinderAddOnCommand);
             }
-
             return planeFinderAddOnCommand;
         }
-
         private void PlaneFinderAddOnCommandOnTerminate(object sender, PlaneFinderAddOnCommandTerminateEventArgs e)
         {
             if (_planeFinderAddOnCommands.TryGetValue(e.PlaneFinderAddOnCommand.Session.Identifier,
@@ -466,16 +419,12 @@ namespace Bolsover
                 _planeFinderAddOnCommands.Remove(e.PlaneFinderAddOnCommand.Session.Identifier);
             }
         }
-
         #endregion
-
         #region CycloidalGear
-
         /// <summary>
         /// A dictionary to keep track of currently open AlibreDataViewerAddOnCommand object.
         /// </summary>
         private readonly Dictionary<string, CycloidalGearAddOnCommand> _cycloidalGearAddOnCommands = new();
-
         /// <summary>
         /// Opens the Cycloidal Gear generator dialog.
         /// </summary>
@@ -503,10 +452,8 @@ namespace Bolsover
                 _cycloidalGearAddOnCommands.Remove(session.Identifier);
                 return null;
             }
-
             return cycloidalGearAddOnCommand;
         }
-
         private void CycloidalGearAddOnCommandOnTerminate(object sender, CycloidalGearAddOnCommandTerminateEventArgs e)
         {
             if (_cycloidalGearAddOnCommands.TryGetValue(e.CycloidalGearAddOnCommand.Session.Identifier,
@@ -515,22 +462,16 @@ namespace Bolsover
                 _cycloidalGearAddOnCommands.Remove(e.CycloidalGearAddOnCommand.Session.Identifier);
             }
         }
-
         #endregion
-
         #region HelpAbout
-
         private static IAlibreAddOnCommand DoHelpAbout()
         {
             var aboutForm = new AboutForm();
             aboutForm.Visible = true;
             return null;
         }
-
         #endregion
-
         #region DataBrowser
-
         /// <summary>
         /// Opens the DataBrowser.
         /// Note that the DataBrowser returned is a static instance.
@@ -543,11 +484,8 @@ namespace Bolsover
             browserForm.Visible = true;
             return null;
         }
-
         #endregion
-
         #region Bevel
-        
         /// <summary>
         /// </summary>
         /// <returns></returns>
@@ -555,10 +493,8 @@ namespace Bolsover
         {
             var form = new BevelGearForm();
             form.Show();
-
             return null;
         }
-
         /// <summary>
         /// </summary>
         /// <returns></returns>
@@ -566,12 +502,9 @@ namespace Bolsover
         {
             var form = new InvoluteGearForm();
             form.Show();
-
             return null;
         }
-
         #endregion
-
         /// <summary>
         /// Loads Data from AddOn
         /// </summary>
@@ -580,7 +513,6 @@ namespace Bolsover
         public void LoadData(IStream pCustomData, string sessionIdentifier)
         {
         }
-
         /// <summary>
         /// Saves Data to AddOn
         /// </summary>
@@ -589,7 +521,6 @@ namespace Bolsover
         public void SaveData(IStream pCustomData, string sessionIdentifier)
         {
         }
-
         /// <summary>
         /// Sets the IsLicensed bit for the tightly coupled Add-on
         /// </summary>
@@ -597,7 +528,6 @@ namespace Bolsover
         public void setIsAddOnLicensed(bool isLicensed)
         {
         }
-
         /// <summary>
         /// Returns True if the AddOn needs to use a Dedicated Ribbon Tab
         /// </summary>

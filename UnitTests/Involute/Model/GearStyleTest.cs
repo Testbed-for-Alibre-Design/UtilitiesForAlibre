@@ -1,11 +1,9 @@
 ﻿using Bolsover.Involute.Model;
 using NUnit.Framework;
-
 namespace UnitTests.Involute.Model
 {
     public class GearStyleTest
     {
-        
         private ConsoleIO io = new();
         [Test]
         public void GearStyleValuesTest()
@@ -22,7 +20,6 @@ namespace UnitTests.Involute.Model
             Assert.AreEqual(512, (int)GearStyle.Planetary);
             Assert.AreEqual(1024, (int)GearStyle.Cycloidal);
         }
-        
         [Test]
         public void GearStyleTest2()
         {
@@ -34,9 +31,6 @@ namespace UnitTests.Involute.Model
             // io.WriteLine(gearStyle.ToString());
             // io.WriteLine(gearStyle.HasFlag(GearStyle.Helical).ToString());
             // io.WriteLine(gearStyle.HasFlag(GearStyle.Bevel).ToString());
-
-
-
         }
     }
 }

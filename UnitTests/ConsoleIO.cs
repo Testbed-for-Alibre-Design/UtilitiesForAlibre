@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace UnitTests
 {
     public class ConsoleIO
@@ -8,7 +7,6 @@ namespace UnitTests
         {
             Console.WriteLine(s);
         }
-
         public string ReadLine()
         {
             return Console.ReadLine()!;

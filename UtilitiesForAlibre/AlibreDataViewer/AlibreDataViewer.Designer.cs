@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-
 namespace Bolsover.AlibreDataViewer
 {
     partial class AlibreDataViewer
@@ -8,7 +7,6 @@ namespace Bolsover.AlibreDataViewer
         /// Required designer variable.
         /// </summary>
         private IContainer components = null;
-
         /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
@@ -19,12 +17,9 @@ namespace Bolsover.AlibreDataViewer
             {
                 components.Dispose();
             }
-
             base.Dispose(disposing);
         }
-
         #region Component Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -86,14 +81,10 @@ namespace Bolsover.AlibreDataViewer
             ((System.ComponentModel.ISupportInitialize) (this.treeListView)).EndInit();
             this.ResumeLayout(false);
         }
-
         private BrightIdeasSoftware.TreeListView treeListView;
         private BrightIdeasSoftware.OLVColumn olvColumnProperty;
         private BrightIdeasSoftware.OLVColumn olvColumnType;
         private BrightIdeasSoftware.OLVColumn olvColumnValue;
-
-     
-
         #endregion
     }
 }

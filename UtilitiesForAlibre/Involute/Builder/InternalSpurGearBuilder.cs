@@ -1,6 +1,5 @@
 ﻿using AlibreX;
 using Bolsover.Involute.Model;
-
 namespace Bolsover.Involute.Builder
 {
     public abstract class InternalSpurGearBuilder : AlibreToothBuilder
@@ -16,7 +15,6 @@ namespace Bolsover.Involute.Builder
             figures.Item(0).Delete();
             // the default Alibre units are cm. Scale everything by 0.1 for correct mm dimensions
             const double scale = 0.1;
-
             // add the points and curves to the sketch
             AddScaledPoint(sketch, tooth.Points[0].Point, scale);
             AddScaledPoint(sketch, tooth.Points[1].Point, scale);

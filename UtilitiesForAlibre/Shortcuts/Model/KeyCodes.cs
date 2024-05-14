@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-
 namespace Bolsover.Shortcuts.Model
 {
     public class KeyCodes
@@ -11,7 +10,6 @@ namespace Bolsover.Shortcuts.Model
         public string Code { get; private set; }
         public string Description { get; private set; }
         public string KeyImage { get; private set; }
-
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -22,9 +20,6 @@ namespace Bolsover.Shortcuts.Model
             sb.Append(" KeyStrings: " + KeyImage);
             return sb.ToString();
         }
-
-        
-
         public static Dictionary<int, KeyCodes> KeyCodesDictionaryByIndex() => new()
         {
             {8, new KeyCodes() {KeyCode = 8, KeyName = "BackspaceKey", Description = "Backspace", Code = "Backspace", KeyImage = KeyStrings.BackspaceKey}},
@@ -139,43 +134,35 @@ namespace Bolsover.Shortcuts.Model
             {192, new KeyCodes() {KeyCode = 192, KeyName = "ApostropheKey", Description = "Apostrophe", Code = "Apostrophe", KeyImage = KeyStrings.ApostropheKey}},
             {222, new KeyCodes() {KeyCode = 222, KeyName = "HashKey", Description = "Hash", Code = "Hash", KeyImage = KeyStrings.HashKey}}
         };
-
         public static ArrayList DeconstructKeyCode(int keycode)
         {
             const int meta = 1048576;
             const int alt = 262144;
             const int ctrl = 131072;
             const int shift = 65536;
-
             var keycodes = new ArrayList();
             if (keycode >= meta)
             {
                 keycodes.Add(91); // Keycode for Windows/Command key
                 keycode -= meta;
             }
-
             if (keycode >= alt)
             {
                 keycodes.Add(18); // Keycode for Alt
                 keycode -= alt;
             }
-
             if (keycode >= ctrl)
             {
                 keycodes.Add(17); // Keycode for Control
                 keycode -= ctrl;
             }
-
             if (keycode >= shift)
             {
                 keycodes.Add(16); // Keycode for Shift
                 keycode -= shift;
             }
-
-
             // Remaining value is the ASCII value of the key pressed
             keycodes.Add(keycode);
-
             return keycodes;
         }
     }

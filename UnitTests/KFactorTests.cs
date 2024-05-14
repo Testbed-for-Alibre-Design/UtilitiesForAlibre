@@ -1,7 +1,6 @@
 ﻿using Bolsover.Bevel.Calculator;
 using MathNet.Numerics.LinearAlgebra;
 using NUnit.Framework;
-
 namespace UnitTests
 {
     public class KFactorTests
@@ -14,8 +13,6 @@ namespace UnitTests
             Vector<double> result = kfc.Calculate();
             io.WriteLine(result.ToString());
         }
-        
-        
         [Test]
         public void TestKFactor2()
         {
@@ -23,15 +20,11 @@ namespace UnitTests
             double result = kfc.TestKFactor(0.14);
             io.WriteLine(result.ToString());
         }
-        
        [ Test]
         public void TestKFactor3()
         {
-         
             double result = KFactorDictionary.GetKFactor(16, 0.3);
             io.WriteLine(result.ToString());
         }
-        
-        
     }
 }

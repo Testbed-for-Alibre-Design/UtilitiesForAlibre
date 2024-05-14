@@ -1,14 +1,11 @@
 ﻿using System;
 using Bolsover.Bevel.Models;
-
 namespace Bolsover.Bevel.Views
 {
     public interface IBevelGearView
     {
         IBevelGear Pinion { get; set; }
         IBevelGear Gear { get; set; }
-
-
         event EventHandler BuildPinionEvent;
         event EventHandler BuildGearEvent;
         event EventHandler CancelEvent;

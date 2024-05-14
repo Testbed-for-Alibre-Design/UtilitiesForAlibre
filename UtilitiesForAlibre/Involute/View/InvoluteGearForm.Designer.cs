@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-
 namespace Bolsover.Involute.View
 {
     partial class InvoluteGearForm
@@ -8,7 +7,6 @@ namespace Bolsover.Involute.View
         /// Required designer variable.
         /// </summary>
         private IContainer components = null;
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -19,12 +17,9 @@ namespace Bolsover.Involute.View
             {
                 components.Dispose();
             }
-
             base.Dispose(disposing);
         }
-
         #region Windows Form Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -56,11 +51,8 @@ namespace Bolsover.Involute.View
             this.ResumeLayout(false);
             this.PerformLayout();
         }
-
         private BrightIdeasSoftware.OLVColumn olvColumn1;
-
         private Bolsover.Involute.View.GearView gearView;
-
         #endregion
     }
 }

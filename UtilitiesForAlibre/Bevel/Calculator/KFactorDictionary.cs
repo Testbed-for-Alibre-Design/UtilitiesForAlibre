@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
 namespace Bolsover.Bevel.Calculator
 {
     public static class KFactorDictionary
@@ -20,7 +19,6 @@ namespace Bolsover.Bevel.Calculator
             { 23, new KFactor { Teeth = 23, KCoefficients = new double[] { 0.0226875, -0.056163, -0.119816 } } },
             { 24, new KFactor { Teeth = 24, KCoefficients = new double[] { 0.0188031, -0.0874672, -0.0984252 } } }
         };
-        
         public static double GetKFactor(int teeth, double ratio)
         {
             if (teeth > 24)
@@ -31,12 +29,9 @@ namespace Bolsover.Bevel.Calculator
             var p = kFactor.KCoefficients;
             var y = Polynomial(ratio);
             return y;
-
             double Polynomial(double x) => p[0] + p[1] * x + p[2] * Math.Pow(x, 2);
         }
-
     }
-
     public class KFactor
     {
         public int Teeth { get; set; }

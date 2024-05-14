@@ -1,15 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
-
         <IsPackable>false</IsPackable>
-
         <Nullable>disable</Nullable>
         <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
         <TargetFramework>net481</TargetFramework>
         <LangVersion>9</LangVersion>
     </PropertyGroup>
-
     <ItemGroup>
         <PackageReference Include="itext7" Version="8.0.1" />
         <PackageReference Include="itext7.pdfhtml" Version="5.0.1" />
@@ -21,11 +17,9 @@
         <PackageReference Include="coverlet.collector" Version="3.0.2"/>
         <PackageReference Include="System.Collections" Version="4.3.0" />
     </ItemGroup>
-
     <ItemGroup>
         <ProjectReference Include="..\UtilitiesForAlibre\UtilitiesForAlibre.csproj"/>
     </ItemGroup>
-
     <ItemGroup>
         <Reference Include="alibre-core">
           <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\alibre-core.dll</HintPath>
@@ -42,6 +36,4 @@
         <Reference Include="System.Data.Linq" />
         <Reference Include="System.Windows.Forms"/>
     </ItemGroup>
-
-
 </Project>

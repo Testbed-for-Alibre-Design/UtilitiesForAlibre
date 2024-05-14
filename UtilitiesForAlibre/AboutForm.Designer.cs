@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-
 namespace Bolsover
 {
     partial class AboutForm
@@ -8,7 +7,6 @@ namespace Bolsover
         /// Required designer variable.
         /// </summary>
         private IContainer components = null;
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -19,12 +17,9 @@ namespace Bolsover
             {
                 components.Dispose();
             }
-
             base.Dispose(disposing);
         }
-
         #region Windows Form Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -91,14 +86,10 @@ namespace Bolsover
             this.Text = "About - Utilities for Alibre";
             this.ResumeLayout(false);
         }
-
         private System.Windows.Forms.LinkLabel linkLabel1;
-
         private System.Windows.Forms.Button closeButton;
-
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-
         #endregion
     }
 }

@@ -2,22 +2,17 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 using AlibreX;
-
-
 namespace Bolsover.PlaneFinder
 {
     public partial class PlaneFinder : UserControl
     {
         private IADSession _session;
         private IADSketch _sketch;
-
-
         public PlaneFinder(IADSession session)
         {
             _session = session;
             InitializeComponent();
         }
-
         private void GetPlaneForSketch(IADSketch sketch)
         {
             try
@@ -31,7 +26,6 @@ namespace Bolsover.PlaneFinder
                 Debug.WriteLine(ex.ToString());
             }
         }
-
         public IADSketch Sketch
         {
             get => _sketch;

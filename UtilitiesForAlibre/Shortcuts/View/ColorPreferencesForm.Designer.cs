@@ -1,5 +1,4 @@
 using System.ComponentModel;
-
 namespace Bolsover.Shortcuts.View
 {
     partial class ColorPreferencesForm
@@ -8,7 +7,6 @@ namespace Bolsover.Shortcuts.View
         /// Required designer variable.
         /// </summary>
         private IContainer components = null;
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -19,12 +17,9 @@ namespace Bolsover.Shortcuts.View
             {
                 components.Dispose();
             }
-
             base.Dispose(disposing);
         }
-
         #region Windows Form Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -52,9 +47,7 @@ namespace Bolsover.Shortcuts.View
             this.Text = "Preferences";
             this.ResumeLayout(false);
         }
-
         private Bolsover.Shortcuts.View.ColorPreferences colorPreferences1;
-
         #endregion
     }
 }

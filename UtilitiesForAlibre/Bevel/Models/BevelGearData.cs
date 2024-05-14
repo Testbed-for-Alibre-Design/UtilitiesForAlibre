@@ -9,7 +9,6 @@
         public string GearImperialValue { get; set; }
         public string PinionNotes { get; set; }
         public string GearNotes { get; set; }
-
         public BevelGearData(string item, string pinionMetricValue,  string pinionImperialValue, string pinionNotes,string gearMetricValue,string gearImperialValue,  string gearNotes)
         {
             Item = item;

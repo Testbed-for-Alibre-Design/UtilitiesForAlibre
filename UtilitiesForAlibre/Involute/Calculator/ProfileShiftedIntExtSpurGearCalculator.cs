@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using Bolsover.Involute.Model;
 using static Bolsover.Utils.ConversionUtils;
-
 namespace Bolsover.Involute.Calculator
 {
     public class ProfileShiftedIntExtSpurGearCalculator : IGearCalculator
     {
         private readonly IGearPairDesignInputParams _designInputParams;
         private readonly IGearPairDesignOutputParams _designOutputParams;
-
-
         public ProfileShiftedIntExtSpurGearCalculator(IGearPairDesignInputParams designInputParams, IGearPairDesignOutputParams designOutputParams)
         {
             _designInputParams = designInputParams;
@@ -20,7 +17,6 @@ namespace Bolsover.Involute.Calculator
             _designOutputParams.GearDesignOutput ??= new GearDesignOutputParams();
             SetupEventListeners();
         }
-
         /// <summary>
         /// Calculates various design output parameters of gears based on the design input parameters.
         /// </summary>
@@ -29,105 +25,79 @@ namespace Bolsover.Involute.Calculator
             _designOutputParams.Reset();
             var gearOut = _designOutputParams.GearDesignOutput;
             var pinionOut = _designOutputParams.PinionDesignOutput;
-
             var outerRingDia = CalculateOuterRingDiameter(_designInputParams);
             gearOut.OuterRingDiameter = outerRingDia.Item2; // Outside Diameter of Gear
             pinionOut.OuterRingDiameter = outerRingDia.Item1; // Outside Diameter of Pinion
-
             var tipReliefRadius = CalculateTipReliefRadius(_designInputParams); // Tip Relief Radius
             gearOut.TipReliefRadius = tipReliefRadius.Item2; // Tip Relief Radius
             pinionOut.TipReliefRadius = tipReliefRadius.Item1; // Tip Relief Radius
-
             var rootReliefDiameter = CalculateRootReliefDiameter(_designInputParams); // Root Relief Diameter
             gearOut.RootFilletDiameter = rootReliefDiameter.Item2; // Root Relief Diameter
             pinionOut.RootFilletDiameter = rootReliefDiameter.Item1; // Root Relief Diameter
-
             var rootReliefRadius = CalculateRootReliefRadius(_designInputParams); // Root Relief Radius
             gearOut.RootFilletRadius = rootReliefRadius.Item2; // Root Relief Radius
             pinionOut.RootFilletRadius = rootReliefRadius.Item1; // Root Relief Radius
-
-
             var kappa = CalculateKappa(_designInputParams); // Kappa
             gearOut.Kappa = kappa.Item2; // Kappa
             pinionOut.Kappa = kappa.Item1; // Kappa
-
             var theta = CalculateTheta(_designInputParams); // Theta
             gearOut.Theta = theta.Item2; // Theta
             pinionOut.Theta = theta.Item1; // Theta
-
             var phi = CalculatePhi(_designInputParams); // Phi
             gearOut.Phi = phi.Item2; // Phi
             pinionOut.Phi = phi.Item1; // Phi
-
             var xMod = CalculateProfileShiftModificationForBacklash(_designInputParams); // Profile Shift Modification for Backlash
             gearOut.BacklashAdjustmentFactorXMod = xMod; // Profile Shift Modification for Backlash
             pinionOut.BacklashAdjustmentFactorXMod = xMod; // Profile Shift Modification for Backlash
-
             var diffX = CalculateDifferenceCoefficientOfProfileShift(_designInputParams);
             gearOut.DifferenceCoefficientOfProfileShift = diffX; // Difference of Coefficient of Profile Shift
             pinionOut.DifferenceCoefficientOfProfileShift = diffX; // Difference of Coefficient of Profile Shift
-
             var a = CalculateCentreDistance(_designInputParams); //Centre Distance (standard)
             gearOut.CentreDistance = a; //Centre Distance (standard)
             pinionOut.CentreDistance = a; //Centre Distance (standard)
-
             var y = CalculateCentreDistanceIncrementFactor(_designInputParams); // Centre Distance Increment Factor
             gearOut.CentreDistanceIncrementFactor = y; // Centre Distance Increment Factor
             pinionOut.CentreDistanceIncrementFactor = y; // Centre Distance Increment Factor
-
             var invAlpha = CalculateInvoluteFunction(_designInputParams); // Involute Function 
             gearOut.InvoluteFunction = invAlpha.Item2; // Involute Function of Gear
             pinionOut.InvoluteFunction = invAlpha.Item1; // Involute Function of Pinion
-
             var epsilonAlpha = CalculateContactRatioAlpha(_designInputParams); // Contact Ratio
             gearOut.ContactRatioAlpha = epsilonAlpha; // Contact Ratio
             pinionOut.ContactRatioAlpha = epsilonAlpha; // Contact Ratio
-            
             var epsilonGamma = CalculateContactRatioAlpha(_designInputParams); // Contact Ratio gamma ia always equal to alpha
             gearOut.ContactRatioGamma = epsilonGamma; // Contact Ratio
             pinionOut.ContactRatioGamma = epsilonGamma; // Contact Ratio
-
             var h = CalculateWholeDepth(_designInputParams); // Whole Depth of Pinion and Gear
             pinionOut.WholeDepth = h; // Whole Depth of Pinion
             gearOut.WholeDepth = h; // Whole Depth of Gear
-
             var dw = CalculateWorkingPitchDiameter(_designInputParams); // Working Pitch Diameter of Pinion and Gear
             pinionOut.WorkingPitchDiameter = dw.Item1; // Working Pitch Diameter of Pinion
             gearOut.WorkingPitchDiameter = dw.Item2; // Working Pitch Diameter of Gear
-
             var hf = CalculateDedendum(_designInputParams); // Dedendum of Pinion and Gear
             pinionOut.Dedendum = hf.Item1; // Dedendum of Pinion
             gearOut.Dedendum = hf.Item2; // Dedendum of Gear
-
             var ha = CalculateAddendum(_designInputParams); // Addendum of Pinion and Gear
             pinionOut.Addendum = ha.Item1; // Addendum of Pinion
             gearOut.Addendum = ha.Item2; // Addendum of Gear
-
             var df = CalculateRootDiameter(_designInputParams); // Root Diameter of Pinion and Gear
             pinionOut.RootCircleDiameter = df.Item1; // Root Diameter of Pinion
             gearOut.RootCircleDiameter = df.Item2; // Root Diameter of Gear
-
             var da = CalculateOutsideDiameter(_designInputParams); // Outside Diameter of Pinion and Gear
             pinionOut.OutsideDiameter = da.Item1; // Outside Diameter of Pinion
             gearOut.OutsideDiameter = da.Item2; // Outside Diameter of Gear
-
             var db = CalculateBaseDiameter(_designInputParams); // Base Diameter of Pinion and Gear
             pinionOut.BaseCircleDiameter = db.Item1; // Base Diameter of Pinion
             gearOut.BaseCircleDiameter = db.Item2; // Base Diameter of Gear
-
             var dp = CalculatePitchDiameter(_designInputParams); // Pitch Diameter of Pinion and Gear
             pinionOut.PitchCircleDiameter = dp.Item1; // Pitch Diameter of Pinion
             gearOut.PitchCircleDiameter = dp.Item2; // Pitch Diameter of Gear
-
             var alphaW = CalculateWorkingPressureAngle(_designInputParams); // Working Pressure Angle
             gearOut.WorkingPressureAngle = alphaW; // Working Pressure Angle of Gear
             pinionOut.WorkingPressureAngle = alphaW; // Working Pressure Angle of Pinion
-
             var invAlphaW = CalculateWorkingInvoluteFunction(_designInputParams); // Working Involute Function
             gearOut.WorkingInvoluteFunction = invAlphaW; // Working Involute Function of Gear
             pinionOut.WorkingInvoluteFunction = invAlphaW; // Working Involute Function of Pinion     
         }
-
         /// <summary>
         /// Calculates the profile shift modification for backlash.
         /// </summary>
@@ -144,12 +114,10 @@ namespace Bolsover.Involute.Calculator
             var xMod = num1 * num2;
             return -xMod;
         }
-
         private void SetupEventListeners()
         {
             _designInputParams.GearChanged += (_, _) => Calculate();
         }
-
         public IEnumerable<GearData> BuildGearData(IGearPairDesignInputParams pairDesignInputParams, IGearPairDesignOutputParams pairDesignOutputParams)
         {
             Calculate();
@@ -204,17 +172,11 @@ namespace Bolsover.Involute.Calculator
             gearData.Add(new GearData("Working Involute Function: ", gearOut.WorkingInvoluteFunction.ToString("0.0000"), gearOut.WorkingInvoluteFunction.ToString("0.0000"), null,IsError(gearOut.WorkingInvoluteFunction)));
             gearData.Add(new GearData("ContactRatio gamma: ", gearOut.ContactRatioGamma.ToString("0.0000"), gearOut.ContactRatioGamma.ToString("0.0000"), null,IsError(gearOut.ContactRatioGamma)));
             return gearData;
-            
         }
-        
         private static bool IsError(double d)
         {
             return !(!double.IsNaN(d) && !double.IsInfinity(d));
-
         }
-
-      
-
         /// <summary>
         /// Not applicable to this type of gear
         /// </summary>
@@ -225,7 +187,6 @@ namespace Bolsover.Involute.Calculator
         {
             throw new NotImplementedException();
         }
-
         /// <summary>
         /// Calculates the Difference Coefficient of Profile Shift for a gear pair.
         /// </summary>
@@ -241,7 +202,6 @@ namespace Bolsover.Involute.Calculator
             var diff = (z2 - z1) * (invAlphaW - invAlpha.Item1) / (2 * Math.Tan(alpha));
             return diff;
         }
-
         /// <summary>
         /// Calculates the working pitch diameter for a gear pair design.
         /// </summary>
@@ -257,7 +217,6 @@ namespace Bolsover.Involute.Calculator
             var dw2 = db.Item2 / Math.Cos(alphaW);
             return (dw1, dw2);
         }
-
         /// <summary>
         /// Calculates the distance between the centers of two gears in a gear pair design.
         /// </summary>
@@ -268,11 +227,9 @@ namespace Bolsover.Involute.Calculator
             var z1 = pairDesignInputParams.Pinion.Teeth;
             var z2 = pairDesignInputParams.Gear.Teeth;
             var m = pairDesignInputParams.Gear.Module;
-
             var a = ((z2 - z1) / 2) * m;
             return a;
         }
-
         /// <summary>
         /// Calculates the working pressure angle based on the gear pair design input parameters.
         /// </summary>
@@ -287,7 +244,6 @@ namespace Bolsover.Involute.Calculator
             var alphaW = Degrees(Math.Acos((z2 - z1) * Math.Cos(alpha) / (2 * y + z2 - z1))); // Working pressure angle degrees
             return alphaW;
         }
-
         /// <summary>
         /// Calculates the whole depth of a gear pair based on the given input parameters.
         /// </summary>
@@ -299,7 +255,6 @@ namespace Bolsover.Involute.Calculator
             var h = 2.25 * m;
             return h;
         }
-
         /// <summary>
         /// Calculates the standard centre distance increment factor.
         /// </summary>
@@ -314,7 +269,6 @@ namespace Bolsover.Involute.Calculator
             var y = ax / m - (z2 - z1) / 2;
             return y;
         }
-
         /// <summary>
         /// Calculates the working involute function.
         /// </summary>
@@ -328,7 +282,6 @@ namespace Bolsover.Involute.Calculator
             var invAw = Math.Tan(alphaW) - alphaW; // Working involute function
             return invAw;
         }
-
         /// <summary>
         /// Calculates the involute function value.
         /// </summary>
@@ -342,7 +295,6 @@ namespace Bolsover.Involute.Calculator
             var invAlpha = Math.Tan(alpha) - alpha;
             return (invAlpha, invAlpha);
         }
-
         /// <summary>
         /// Calculates the dedendum of a gear pair based on the input parameters.
         /// </summary>
@@ -357,7 +309,6 @@ namespace Bolsover.Involute.Calculator
             var hf2 = h - ha.Item2;
             return (hf1, hf2);
         }
-
         /// <summary>
         /// Calculates the addendum of a gear pair based on the input parameters.
         /// </summary>
@@ -374,7 +325,6 @@ namespace Bolsover.Involute.Calculator
             var ha2 = (1 - x2) * m;
             return (ha1, ha2);
         }
-
         /// <summary>
         /// Calculates the root diameter of the pinion and gear in a gear pair design.
         /// </summary>
@@ -391,7 +341,6 @@ namespace Bolsover.Involute.Calculator
             var df2 = da.Item2 + 2 * h;
             return (df1, df2);
         }
-
         /// <summary>
         /// Calculates the outside diameter of a gear pair based on the given input parameters.
         /// </summary>
@@ -407,7 +356,6 @@ namespace Bolsover.Involute.Calculator
             var da2 = d.Item2 - 2 * ha.Item2;
             return (da1, da2);
         }
-
         /// <summary>
         /// Calculates the base diameter for the pinion and gear in a gear pair design.
         /// </summary>
@@ -421,7 +369,6 @@ namespace Bolsover.Involute.Calculator
             var db2 = d.Item2 * Math.Cos(alpha);
             return (db1, db2);
         }
-
         /// <summary>
         /// Calculates the pitch diameter for a pair of gears.
         /// </summary>
@@ -438,7 +385,6 @@ namespace Bolsover.Involute.Calculator
             var d2 = z2 * m;
             return (d1, d2);
         }
-
         /// <summary>
         /// Calculates the contact ratio alpha for a given gear pair design input parameters.
         /// </summary>
@@ -456,13 +402,9 @@ namespace Bolsover.Involute.Calculator
             var num2 = Math.Sqrt(Math.Pow(da.Item2 / 2, 2) - Math.Pow(db.Item2 / 2, 2));
             var num3 = ax * Math.Sin(alphaW);
             var num4 = Math.PI * m * Math.Cos(alpha);
-
             var epsilonAlpha = (num1 - num2 + num3) / num4;
-
-
             return epsilonAlpha;
         }
-
         /// <summary>
         /// Not applicable to this type of gear
         /// </summary>
@@ -473,7 +415,6 @@ namespace Bolsover.Involute.Calculator
         {
             throw new NotImplementedException();
         }
-
         /// <summary>
         /// Not applicable to this type of gear
         /// </summary>
@@ -484,7 +425,6 @@ namespace Bolsover.Involute.Calculator
         {
             throw new NotImplementedException();
         }
-
         /// <summary>
         /// Not applicable to this type of gear
         /// </summary>
@@ -495,7 +435,6 @@ namespace Bolsover.Involute.Calculator
         {
             throw new NotImplementedException();
         }
-
         /// <summary>
         /// Not applicable to this type of gear
         /// </summary>
@@ -506,7 +445,6 @@ namespace Bolsover.Involute.Calculator
         {
             throw new NotImplementedException();
         }
-
         /// <summary>
         /// Not applicable to this type of gear
         /// </summary>
@@ -517,7 +455,6 @@ namespace Bolsover.Involute.Calculator
         {
             throw new NotImplementedException();
         }
-
         /// <summary>
         /// Not applicable to this type of gear
         /// </summary>
@@ -528,7 +465,6 @@ namespace Bolsover.Involute.Calculator
         {
             throw new NotImplementedException();
         }
-
         /// <summary>
         /// Not applicable to this type of gear
         /// </summary>
@@ -539,7 +475,6 @@ namespace Bolsover.Involute.Calculator
         {
             throw new NotImplementedException();
         }
-
         /// <summary>
         /// Not applicable to this type of gear
         /// </summary>
@@ -550,7 +485,6 @@ namespace Bolsover.Involute.Calculator
         {
             throw new NotImplementedException();
         }
-
         /// <summary>
         /// Calculates the small angle between the point at which the involute starts on the base circle and the
         /// point at which the involute crosses the reference pitch diameter
@@ -566,10 +500,8 @@ namespace Bolsover.Involute.Calculator
             var db = CalculateBaseDiameter(pairDesignInputParams);
             var phi1 = Math.Sqrt(Math.Pow(d.Item1, 2) - Math.Pow(db.Item1, 2)) / db.Item1 * 180 / Math.PI - Degrees(alpha);
             var phi2 = Math.Sqrt(Math.Pow(d.Item2, 2) - Math.Pow(db.Item2, 2)) / db.Item2 * 180 / Math.PI - Degrees(alpha);
-
             return (phi1, phi2);
         }
-
         /// <summary>
         /// Half Tooth Angle At Reference Diameter (Pitch circle) with allowance for backlash and profile shift
         /// </summary>
@@ -592,7 +524,6 @@ namespace Bolsover.Involute.Calculator
             var theta2 = 90 / z2 + 360 * (x2 + xMod) * Math.Tan(alpha) / (Math.PI * z2);
             return (theta1, theta2);
         }
-
         /// <summary>
         /// Angle by which involute has to be rotated to form opposing tooth flank
         /// </summary>
@@ -604,43 +535,35 @@ namespace Bolsover.Involute.Calculator
             var theta = CalculateTheta(pairDesignInputParams);
             var kappa1 = (theta.Item1 + phi.Item1) * 2;
             var kappa2 = (theta.Item2 + phi.Item2) * 2;
-
-
             return (kappa1, kappa2);
         }
-
         public (double, double) CalculateHalfToothAngle(IGearPairDesignInputParams pairDesignInputParams)
         {
             var z1 = pairDesignInputParams.Pinion.Teeth;
             var z2 = pairDesignInputParams.Gear.Teeth;
             return (360 / (2 * z1), 360 / (2 * z2));
         }
-
         public (double, double) CalculateToothAngle(IGearPairDesignInputParams pairDesignInputParams)
         {
             var z1 = pairDesignInputParams.Pinion.Teeth;
             var z2 = pairDesignInputParams.Gear.Teeth;
             return (360 / z1, 360 / z2);
         }
-
         public (double, double) CalculateTipReliefRadius(IGearPairDesignInputParams designInputParams)
         {
             var radius = designInputParams.Gear.AddendumFilletFactor * designInputParams.Gear.Module;
             return (radius, radius);
         }
-
         public (double, double) CalculateRootReliefDiameter(IGearPairDesignInputParams designInputParams)
         {
             var diameter = designInputParams.Gear.RootFilletFactor * designInputParams.Gear.Module;
             return (diameter, diameter);
         }
-
         public (double, double) CalculateRootReliefRadius(IGearPairDesignInputParams designInputParams)
         {
             var radius = designInputParams.Gear.RootFilletFactor * designInputParams.Gear.Module / 2;
             return (radius, radius);
         }
-
         public (double, double) CalculateOuterRingDiameter(IGearPairDesignInputParams pairDesignInputParams)
         {
             var m = pairDesignInputParams.Gear.Module;
@@ -649,7 +572,6 @@ namespace Bolsover.Involute.Calculator
             var outerRingDiameter2 = Math.Ceiling(df.Item2) + m;
             return (outerRingDiameter1, outerRingDiameter2);
         }
-
         public (string, string) CalculateFileName(IGearPairDesignInputParams pairDesignInputParams)
         {
             var m = pairDesignInputParams.Gear.Module;
@@ -660,7 +582,6 @@ namespace Bolsover.Involute.Calculator
             var x1 = pairDesignInputParams.Pinion.CoefficientOfProfileShift;
             var x2 = pairDesignInputParams.Gear.CoefficientOfProfileShift;
             var jt = pairDesignInputParams.Gear.CircularBacklash; // Circular Backlash required j_t
-
             var sb1 = new StringBuilder();
             sb1.Append("M_");
             sb1.Append(m);
@@ -674,7 +595,6 @@ namespace Bolsover.Involute.Calculator
             sb1.Append(x1);
             sb1.Append("_J_");
             sb1.Append(jt);
-
             var sb2 = new StringBuilder();
             sb2.Append("M_");
             sb2.Append(m);
@@ -688,7 +608,6 @@ namespace Bolsover.Involute.Calculator
             sb2.Append(x2);
             sb2.Append("_J_");
             sb2.Append(jt);
-
             return (sb1.ToString(), sb2.ToString());
         }
     }

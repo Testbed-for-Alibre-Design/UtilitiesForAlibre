@@ -5,7 +5,6 @@
         IGearPairDesignInputParams GearPairDesignInputParams { get; set; }
         IGearDesignOutputParams PinionDesignOutput { get; set; }
         IGearDesignOutputParams GearDesignOutput { get; set; }
-        
         void Reset();
     }
 }

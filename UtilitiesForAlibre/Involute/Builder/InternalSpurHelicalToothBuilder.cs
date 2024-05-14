@@ -1,14 +1,12 @@
 ﻿using Bolsover.Involute.Calculator;
 using Bolsover.Involute.Model;
 using static Bolsover.Utils.ConversionUtils;
-
 namespace Bolsover.Involute.Builder
 {
     public class InternalSpurHelicalToothBuilder : IToothPointsBuilder
     {
         private Tooth _tooth;
         private GearPoint[] _reliefPoints;
-
         public Tooth Build(IGearDesignOutputParams gearDesignOutputParams)
         {
             _tooth = new Tooth();
@@ -30,13 +28,10 @@ namespace Bolsover.Involute.Builder
             _tooth.Points[14].Point = _reliefPoints[3];
             _tooth.Points[15].Point = _reliefPoints[4];
             _tooth.Points[16].Point = _reliefPoints[5];
-            
             // trim the right involute to the addendum fillet
             rhsInvolute = Geometry.PointsFromIntersectionWithRootFillet(rhsInvolute, _reliefPoints[0]);
-            
             // ensure involute starts at same point as fillet
             rhsInvolute[0] = _reliefPoints[0];
-            
             // Mirror and rotate right involute points to create Left involute
             var lhsInvolute = GearPoint.MirrorPoints(rhsInvolute, 90);
             lhsInvolute = GearPoint.Rotated(lhsInvolute, rotateRadians);
@@ -50,14 +45,12 @@ namespace Bolsover.Involute.Builder
                 .Rotate(Radians(180 / gearDesignOutputParams.GearDesignInputParams.Teeth));
             // right mid outer
             _tooth.Points[18].Point = _tooth.Points[19].Point.Rotate(Radians(-360 / gearDesignOutputParams.GearDesignInputParams.Teeth));
-
             // left mid Addendum
             _tooth.Points[17].Point = new GearPoint(gearDesignOutputParams.OutsideDiameter / 2, 0)
                 .Rotate(rotateRadians / 2)
                 .Rotate(Radians(180 / gearDesignOutputParams.GearDesignInputParams.Teeth));
             // right mid Addendum
             _tooth.Points[1].Point = _tooth.Points[17].Point.Rotate(Radians(-360 / gearDesignOutputParams.GearDesignInputParams.Teeth));
-
             // left mid Base
             _tooth.Points[21].Point = new GearPoint(gearDesignOutputParams.BaseCircleDiameter / 2, 0)
                 .Rotate(rotateRadians / 2)
@@ -68,6 +61,5 @@ namespace Bolsover.Involute.Builder
             _tooth.LhsInvolute = lhsInvolute;
             return _tooth;
         }
-
     }
 }

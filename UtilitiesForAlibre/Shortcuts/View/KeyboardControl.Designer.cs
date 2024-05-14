@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-
 namespace Bolsover.Shortcuts.View
 {
     partial class KeyboardControl
@@ -8,7 +7,6 @@ namespace Bolsover.Shortcuts.View
         /// Required designer variable.
         /// </summary>
         private IContainer components = null;
-
         /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
@@ -19,12 +17,9 @@ namespace Bolsover.Shortcuts.View
             {
                 components.Dispose();
             }
-
             base.Dispose(disposing);
         }
-
         #region Component Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -1530,11 +1525,8 @@ namespace Bolsover.Shortcuts.View
             this.Size = new System.Drawing.Size(1588, 430);
             this.ResumeLayout(false);
         }
-
         public System.Windows.Forms.Label ModifierText;
-
         public System.Windows.Forms.ComboBox ProfileComboBox;
-
         public System.Windows.Forms.ToolTip toolTip1;
         public ShortcutButton PrintScreenKey;
         public ShortcutButton ScrollLockKey;

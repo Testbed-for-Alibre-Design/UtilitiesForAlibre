@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-
 namespace Bolsover.Involute.Model
 {
     public class Tooth
@@ -8,7 +7,6 @@ namespace Bolsover.Involute.Model
         {
             Init();
         }
-
         private void Init()
         {
             Points = new Dictionary<int, ToothPoint>();
@@ -19,8 +17,6 @@ namespace Bolsover.Involute.Model
             RhsInvolute = new List<GearPoint>();
             LhsInvolute = new List<GearPoint>();
         }
-        
-       
         private static string GetDescription(int index)
         {
             return index switch
@@ -50,11 +46,8 @@ namespace Bolsover.Involute.Model
                 _ => ""
             };
         }
-
         public Dictionary<int, ToothPoint> Points { get; set; }
-
         public List<GearPoint> LhsInvolute { get; set; }
-
         public List<GearPoint> RhsInvolute { get; set; }
     }
 }

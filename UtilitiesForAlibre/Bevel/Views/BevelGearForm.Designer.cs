@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-
 namespace Bolsover.Bevel.Views
 {
     partial class BevelGearForm
@@ -8,7 +7,6 @@ namespace Bolsover.Bevel.Views
         /// Required designer variable.
         /// </summary>
         private IContainer components = null;
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -19,20 +17,15 @@ namespace Bolsover.Bevel.Views
             {
                 components.Dispose();
             }
-
             base.Dispose(disposing);
         }
-
         #region Windows Form Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-
-
             _bevelGearView = new BevelGearView();
             this.SuspendLayout();
             // 
@@ -43,7 +36,6 @@ namespace Bolsover.Bevel.Views
             this._bevelGearView.Name = "_bevelGearView";
             this._bevelGearView.Size = new System.Drawing.Size(798, 829);
             this._bevelGearView.TabIndex = 0;
-            
             // 
             // BevelGearForm
             // 
@@ -55,10 +47,7 @@ namespace Bolsover.Bevel.Views
             this.Text = "Bevel Gears";
             this.ResumeLayout(false);
         }
-
         private Bolsover.Bevel.Views.BevelGearView _bevelGearView;
-       
-
         #endregion
     }
 }

@@ -1,6 +1,5 @@
 ﻿using AlibreX;
 using Bolsover.Involute.Model;
-
 namespace Bolsover.Involute.Builder
 {
     public abstract class ExternalSpurGearBuilder : AlibreToothBuilder
@@ -16,7 +15,6 @@ namespace Bolsover.Involute.Builder
             figures.Item(0).Delete();
             // the default Alibre units are cm. Scale everything by 0.1 for correct mm dimensions
             const double scale = 0.1;
-
             for (var i = 0; i < tooth.Points.Count; i++)
             {
                 AddScaledPoint(sketch, tooth.Points[i].Point, scale);
@@ -40,14 +38,11 @@ namespace Bolsover.Involute.Builder
             AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[15].Point, tooth.Points[16].Point, tooth.Points[14].Point, scale);
             AddScaledCircularArcByCenterStartEnd(sketch, tooth.Points[0].Point, tooth.Points[16].Point, tooth.Points[17].Point, scale);
             AddScaledLine(sketch, tooth.Points[0].Point, tooth.Points[17].Point, scale);
-
             if (gear.BaseCircleDiameter > gear.RootCircleDiameter + gear.RootFilletDiameter)
             {
                 AddScaledLine(sketch, tooth.Points[13].Point, tooth.Points[14].Point, scale);
                 AddScaledLine(sketch, tooth.Points[4].Point, tooth.Points[5].Point, scale);
             }
-
-
             // complete the sketch changes
             sketch.EndChange();
             // open up an Alibre parameter transaction session
@@ -55,7 +50,6 @@ namespace Bolsover.Involute.Builder
             // set the number of teeth for the circular pattern
             session.Parameters.Item("C1").Value = gear.GearDesignInputParams.Teeth;
             session.Parameters.Item("D2").Value = gear.GearDesignInputParams.Height * scale;
-           
             // close the Alibre parameter transaction session
             session.Parameters.CloseParameterTransaction();
             // complete the sketch changes

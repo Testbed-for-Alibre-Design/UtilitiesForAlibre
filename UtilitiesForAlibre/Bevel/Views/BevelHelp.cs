@@ -1,5 +1,4 @@
 ﻿using System.Windows.Forms;
-
 namespace Bolsover.Bevel.Views
 {
     public partial class BevelHelp : Form

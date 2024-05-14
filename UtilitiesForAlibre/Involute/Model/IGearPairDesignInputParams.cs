@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-
 namespace Bolsover.Involute.Model
 {
     public interface IGearPairDesignInputParams
@@ -8,7 +7,6 @@ namespace Bolsover.Involute.Model
         IGearDesignInputParams Gear { get; set; }
         bool Auto { get; set; }
         double WorkingCentreDistance { get; set; } //working centre distance of gear pair - include allowance for profile shifted gears
-
         event GearChangedEventHandler GearChanged;
     }
 }
