@@ -2,11 +2,13 @@
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34902.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilitiesForAlibre", "UtilitiesForAlibre\UtilitiesForAlibre.csproj", "{305297BD-DE8D-4F36-86A4-AA5E69538A69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilitiesForAlibre", "UtilitiesForAlibre\UtilitiesForAlibre.csproj", "{305297BD-DE8D-4F36-86A4-AA5E69538A69}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{2CEB07B1-48E5-4719-9506-D1B83A2699ED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "vendor", "vendor", "{BD17DFEB-BE9D-44C4-9859-8F3A56821DB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortcutUtilities", "ShortcutUtilities\ShortcutUtilities.csproj", "{AEB956F1-CE97-4667-9286-71A75192F0FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,6 +24,10 @@ Global
 		{2CEB07B1-48E5-4719-9506-D1B83A2699ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CEB07B1-48E5-4719-9506-D1B83A2699ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CEB07B1-48E5-4719-9506-D1B83A2699ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEB956F1-CE97-4667-9286-71A75192F0FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEB956F1-CE97-4667-9286-71A75192F0FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEB956F1-CE97-4667-9286-71A75192F0FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEB956F1-CE97-4667-9286-71A75192F0FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
